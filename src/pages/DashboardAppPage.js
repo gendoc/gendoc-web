@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Helmet} from 'react-helmet-async';
 import {faker} from '@faker-js/faker';
 // @mui
 import {useTheme} from '@mui/material/styles';
-import {Grid, Container, Typography, IconButton} from '@mui/material';
+import {Grid, Container, Typography, IconButton, Button} from '@mui/material';
 // components
 import Iconify from '../components/iconify';
 // sections
@@ -18,6 +18,9 @@ import {
     AppCurrentSubject,
     AppConversionRates,
 } from '../sections/@dashboard/app';
+import GoogleDrivePicker from "./GoogleDrivePicker";
+import {gapiLoaded, getGoogleAuthToken, gisLoaded, handleAuthClick, handleSignoutClick} from "./GapiClient";
+import newScript from "../utils/scriptReader";
 
 // ----------------------------------------------------------------------
 
@@ -27,7 +30,20 @@ export default function DashboardAppPage() {
     const guideFileInputRef = React.useRef(null);
     const writtenFileInputRef = React.useRef(null);
 
-    const handleFileUpload = (event) => {
+    useEffect(() => {
+        newScript("https://apis.google.com/js/api.js").then(function() {
+            gapiLoaded()
+        })
+        newScript("https://accounts.google.com/gsi/client").then(function() {
+            gisLoaded()
+        })
+
+
+
+    }, [])
+
+
+    const handleGuideFilesUpload = (event) => {
         const files = event.target.files;
         files.forEach((file) => {
             if (file.type === 'application/pdf') {
@@ -39,12 +55,70 @@ export default function DashboardAppPage() {
         })
     };
 
+    const handleWrittenFileUpload = async (event) => {
+        console.log("accessToken:");
+        const accessToken = await window.gapi.client.getToken().access_token;
+        console.log("accessToken:", accessToken);
+        const file = event.target.files[0];
+        console.log("Uploading:", file);
+
+        // Set the metadata for the file, including the desired mimeType for the Google Document
+        const metadata = {
+            name: file.name,
+            mimeType: "application/vnd.google-apps.document",
+        };
+
+        // Convert the metadata object to a JSON string
+        const metadataJSON = JSON.stringify(metadata);
+
+        // Create a Blob object for the metadata
+        const metadataBlob = new Blob([metadataJSON], {
+            type: "application/json; charset=UTF-8",
+        });
+
+        // Create a FormData object to hold the metadata and file content
+        const formData = new FormData();
+        formData.append("metadata", metadataBlob);
+        formData.append("file", file);
+
+        // Set the appropriate request headers
+        const requestHeaders = new Headers();
+        requestHeaders.append("Authorization", `Bearer ${accessToken}`);
+
+        // Send the request to the Google Drive API
+        const response = await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
+            method: "POST",
+            headers: requestHeaders,
+            body: formData,
+        });
+
+        // Parse the response JSON and return the file ID
+        const responseData = await response.json();
+        console.log(responseData);
+        return responseData.id;
+    };
+
     const handleGuideFilesUploadButtonClick = () => {
         guideFileInputRef.current.click();
     };
 
-    const handleWrittenFileUploadButtonClick = () => {
-        writtenFileInputRef.current.click();
+    const handleWrittenFileUploadButtonClick = async (e) => {
+        if (window.gapi.client.getToken() == null) {
+            handleAuthClick()
+        } else {
+            const accessToken = window.gapi.client.getToken().access_token;
+            const url = `https://oauth2.googleapis.com/tokeninfo?access_token=${accessToken}`;
+
+            const response = await fetch(url);
+            if (response.ok) {
+                writtenFileInputRef.current.click();
+            } else {
+                handleAuthClick()
+            }
+
+
+        }
+
     };
 
     return (
@@ -54,36 +128,40 @@ export default function DashboardAppPage() {
             </Helmet>
 
             <Container maxWidth="xl">
+
+                <GoogleDrivePicker/>
+                <Button onClick={handleAuthClick}>Authorize</Button>
+                <Button onClick={handleSignoutClick}>Sign Out</Button>
+
                 <Typography variant="h4" sx={{mb: 5}}>
                     Hi, Welcome back
                 </Typography>
 
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={3} onClick={handleGuideFilesUploadButtonClick}>
-                            <input
-                                type="file"
-                                id="pdfUploader"
-                                accept=".pdf"
-                                multiple
-                                style={{display: 'none'}}
-                                ref={guideFileInputRef}
-                                onChange={handleFileUpload}
-                            />
-                            <AppWidgetSummary title="가이드 문서 업로드" icon={'ant-design:android-filled'}/>
+                        <input
+                            type="file"
+                            id="pdfUploader"
+                            accept=".pdf"
+                            multiple
+                            style={{display: 'none'}}
+                            ref={guideFileInputRef}
+                            onChange={handleGuideFilesUpload}
+                        />
+                        <AppWidgetSummary title="가이드 문서 업로드" icon={'ant-design:android-filled'}/>
                     </Grid>
 
-                    <Grid item xs={12} sm={6} md={3} onClick={handleWrittenFileUploadButtonClick}>
+                    <Grid item xs={12} sm={6} md={3} >
                         <input
                             type="file"
                             id="pdfUploader"
                             accept=".docx"
                             style={{display: 'none'}}
                             ref={writtenFileInputRef}
-                            onChange={handleFileUpload}
+                            onChange={handleWrittenFileUpload}
                         />
-                        <AppWidgetSummary title="작성 문서 업로드" color="info" icon={'ant-design:apple-filled'}/>
+                        <AppWidgetSummary onClick={handleWrittenFileUploadButtonClick} title="작성 문서 업로드" color="info" icon={'ant-design:apple-filled'}/>
                     </Grid>
-
 
 
                     <Grid item xs={12} md={6} lg={8}>
