@@ -1,227 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 가이드 파일정보 서버에 올리는 로직 추가">
+    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: axios 쿠키설정">
+      <change afterPath="$PROJECT_DIR$/server/routes/documents.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/service/accountService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/service/documentService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.idea/gen-doc-react.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.prettierrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/LICENSE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/jsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/_redirects" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/icons/ic_flag_de.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/icons/ic_flag_en.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/icons/ic_flag_fr.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/icons/ic_notification_chat.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/icons/ic_notification_mail.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/icons/ic_notification_package.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/icons/ic_notification_shipping.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/icons/navbar/ic_analytics.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/icons/navbar/ic_blog.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/icons/navbar/ic_cart.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/icons/navbar/ic_disabled.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/icons/navbar/ic_lock.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/icons/navbar/ic_user.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/icons/shape-avatar.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/illustrations/illustration_404.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/illustrations/illustration_avatar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/illustrations/illustration_login.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_13.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_14.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_15.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_16.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_17.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_18.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_19.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_20.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_21.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_22.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_23.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_24.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/avatars/avatar_default.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_13.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_14.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_15.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_16.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_17.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_18.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_19.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_20.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_21.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_22.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_23.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_24.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/covers/cover_9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_13.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_14.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_15.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_16.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_17.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_18.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_19.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_20.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_21.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_22.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_23.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_24.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/images/products/product_9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/placeholder.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/preview.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/assets/transparent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon/android-chrome-192x192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon/android-chrome-512x512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon/apple-touch-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon/favicon-16x16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon/favicon-32x32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/_mock/account.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/_mock/blog.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/_mock/products.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/_mock/user.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/documentApi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/chart/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/chart/styles.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/chart/useChart.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/color-utils/ColorMultiPicker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/color-utils/ColorPreview.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/color-utils/ColorSinglePicker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/color-utils/Icon.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/color-utils/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/iconify/Iconify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/iconify/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/label/Label.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/label/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/label/styles.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/logo/Logo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/logo/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/nav-section/NavSection.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/nav-section/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/nav-section/styles.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/progress/CenteredCircularProgress.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/scroll-to-top/ScrollToTop.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/scroll-to-top/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/scrollbar/Scrollbar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/scrollbar/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/scrollbar/styles.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/svg-color/SvgColor.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/svg-color/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useResponsive.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/DashboardLayout.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/header/AccountPopover.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/header/LanguagePopover.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/header/NotificationsPopover.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/header/Searchbar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/header/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/simple/SimpleLayout.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/simple/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/BlogPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/DashboardAppPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/GapiClient.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/GoogleDrivePicker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/LoginPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Page404.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/ProductsPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/UserPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/reportWebVitals.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/routes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/app/AppConversionRates.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/app/AppCurrentSubject.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/app/AppCurrentVisits.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/app/AppNewsUpdate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/app/AppOrderTimeline.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/app/AppTasks.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/app/AppTrafficBySite.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/app/AppWebsiteVisits.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/app/AppWidgetSummary.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/app/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/blog/BlogPostCard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/blog/BlogPostsSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/blog/BlogPostsSort.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/blog/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/products/ProductCard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/products/ProductCartWidget.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/products/ProductFilterSidebar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/products/ProductList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/products/ProductSort.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/products/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/user/UserListHead.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/user/UserListToolbar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/@dashboard/user/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/auth/login/LoginForm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sections/auth/login/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/serviceWorker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/customShadows.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/globalStyles.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/overrides/Autocomplete.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/overrides/Backdrop.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/overrides/Button.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/overrides/Card.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/overrides/Input.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/overrides/Paper.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/overrides/Table.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/overrides/Tooltip.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/overrides/Typography.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/overrides/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/palette.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/shadows.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/theme/typography.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utils/cssStyles.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utils/formatNumber.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utils/formatTime.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utils/s3Client.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utils/scriptReader.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,7 +44,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/sunghonpark/gendoc/gen-doc-web",
+    "last_opened_file_path": "/Users/sunghonpark/gendoc/gen-doc-web/server/service",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -272,6 +57,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/service" />
+      <recent name="$PROJECT_DIR$/server/routes" />
       <recent name="$PROJECT_DIR$/public/assets" />
     </key>
   </component>
@@ -310,7 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1680499915657</updated>
       <workItem from="1680499916782" duration="39109000" />
-      <workItem from="1680671862374" duration="11428000" />
+      <workItem from="1680671862374" duration="17107000" />
     </task>
     <task id="LOCAL-00001" summary="chore: eslint 설정 제거">
       <created>1680529839505</created>
@@ -424,7 +211,28 @@
       <option name="project" value="LOCAL" />
       <updated>1680683484494</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="feat: 가이드 파일정보 서버에 올리는 로직 추가">
+      <created>1680683722302</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1680683722302</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fix: 서버 url env 표기오류 수정">
+      <created>1680684506773</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1680684506773</updated>
+    </task>
+    <task id="LOCAL-00019" summary="feat: axios 쿠키설정">
+      <created>1680694341125</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1680694341125</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -455,6 +263,8 @@
     <MESSAGE value="feat: s3에 pdf 업로드 로직 수정" />
     <MESSAGE value="feat: axios 설정 추가" />
     <MESSAGE value="feat: 가이드 파일정보 서버에 올리는 로직 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 가이드 파일정보 서버에 올리는 로직 추가" />
+    <MESSAGE value="fix: 서버 url env 표기오류 수정" />
+    <MESSAGE value="feat: axios 쿠키설정" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: axios 쿠키설정" />
   </component>
 </project>
