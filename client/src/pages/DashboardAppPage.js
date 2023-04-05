@@ -23,7 +23,7 @@ import {gapiLoaded, getGoogleAuthToken, gisLoaded, handleAuthClick, handleSignou
 import newScript from "../utils/scriptReader";
 import {uploadFileToS3} from "../utils/s3Client";
 import CenteredCircularProgress from "../components/progress/CenteredCircularProgress";
-import {postGuideDocuments} from "../api/documentApi";
+import {postGuideDocuments, postWrittenDocument} from "../api/documentApi";
 
 // ----------------------------------------------------------------------
 
@@ -126,18 +126,25 @@ export default function DashboardAppPage() {
         const requestHeaders = new Headers();
         requestHeaders.append("Authorization", `Bearer ${accessToken}`);
 
-        // Send the request to the Google Drive API
-        const response = await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
-            method: "POST",
-            headers: requestHeaders,
-            body: formData,
-        });
+        try {
+            // Send the request to the Google Drive API
+            const response = await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
+                method: "POST",
+                headers: requestHeaders,
+                body: formData,
+            });
 
-        // Parse the response JSON and return the file ID
-        const responseData = await response.json();
-        console.log(responseData);
+            // Parse the response JSON and return the file ID
+            const responseData = await response.json();
+            console.log(responseData);
+            await postWrittenDocument({file:{fileName:file.name,documentId:responseData.id}})
+        }catch (e) {
+            console.log(e)
+            alert("업로드 실패")
+        }
+
+
         setLoading(false)
-        return responseData.id;
     };
 
     const handleGuideFilesUploadButtonClick = () => {

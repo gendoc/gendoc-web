@@ -6,3 +6,10 @@ export const postGuideDocuments = (postGuideDocumentsRequest) =>{
         postGuideDocumentsRequest
     )
 }
+
+export const postWrittenDocument = (postWrittenDocumentRequest) =>{
+
+    return axiosInstance.post(`/documents/written`,
+        postWrittenDocumentRequest
+    )
+}
