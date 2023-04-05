@@ -1,4 +1,5 @@
 import AWS from 'aws-sdk';
+import { v4 as uuidv4 } from 'uuid';
 
 const ACCESS_KEY = process.env.REACT_APP_AWS_S3_ACCESS_KEY;
 const SECRET_ACCESS_KEY = process.env.REACT_APP_AWS_S3_SECRET_KEY;
@@ -18,22 +19,21 @@ const myBucket = new AWS.S3({
     region: REGION,
 });
 
-export const uploadFileToS3 = (file,callback) => {
+export const uploadFileToS3 = async (file) => {
+    const uniqueId = uuidv4();
+
     const params = {
         ACL: 'public-read',
         Body: file,
         Bucket: S3_BUCKET,
-        Key: file.name
+        Key: uniqueId,
     };
 
-    try{
-        myBucket.putObject(params)
-            .send((err, data)=>{
-                console.log(data)
-                callback()
-            })
-    }catch (err){
-        console.log(err)
+    try {
+        await myBucket.putObject(params).promise();
+        return uniqueId;
+    } catch (err) {
+        console.log(err);
+        throw err;
     }
-
-}
+};

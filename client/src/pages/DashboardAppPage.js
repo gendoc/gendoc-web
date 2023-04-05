@@ -45,25 +45,27 @@ export default function DashboardAppPage() {
     }, [])
 
 
-    const handleGuideFilesUpload = (event) => {
-        setLoading(true)
-        if (event.target.files.length==0){
-            setLoading(false)
-            return
+    const handleGuideFilesUpload = async (event) => {
+        setLoading(true);
+        if (event.target.files.length == 0) {
+            setLoading(false);
+            return;
         }
         const files = event.target.files;
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
             if (file.type === 'application/pdf') {
-                uploadFileToS3(file, function (){
-                })
+                try {
+                    const fileKey = await uploadFileToS3(file);
+                    console.log(fileKey);
+                } catch (err) {
+                    console.log('Error uploading file:', file.name);
+                }
             } else {
                 console.log('Invalid file type:', file.name);
             }
         }
-        setLoading(false)
-
-
+        setLoading(false);
     };
 
     const handleWrittenFileUpload = async (event) => {
@@ -73,7 +75,7 @@ export default function DashboardAppPage() {
             return
         }
         const file = event.target.files[0];
-        const accessToken = await window.gapi.client.getToken().access_token;
+        const accessToken = window.gapi.client.getToken().access_token;
 
         // Set the metadata for the file, including the desired mimeType for the Google Document
         const metadata = {
