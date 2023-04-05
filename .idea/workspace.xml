@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: express-postgresql 연동코드 추가">
+    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: axios 설정 추가">
+      <change afterPath="$PROJECT_DIR$/client/src/api/documentApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/DashboardAppPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/DashboardAppPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +45,9 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/Users/sunghonpark/gendoc/gen-doc-web",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
     "nodejs_package_manager_path": "yarn",
     "settings.editor.selected.configurable": "editor.preferences.completion",
     "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external",
@@ -58,7 +59,7 @@
       <recent name="$PROJECT_DIR$/public/assets" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.express start">
+  <component name="RunManager" selected="npm.react start">
     <configuration name="express start" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
@@ -93,7 +94,7 @@
       <option name="presentableId" value="Default" />
       <updated>1680499915657</updated>
       <workItem from="1680499916782" duration="39109000" />
-      <workItem from="1680671862374" duration="6221000" />
+      <workItem from="1680671862374" duration="11149000" />
     </task>
     <task id="LOCAL-00001" summary="chore: eslint 설정 제거">
       <created>1680529839505</created>
@@ -179,7 +180,28 @@
       <option name="project" value="LOCAL" />
       <updated>1680675353846</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="feat: 세션 설정 추가">
+      <created>1680678462211</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1680678462211</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat: s3에 pdf 업로드 로직 수정">
+      <created>1680681841889</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1680681841889</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat: axios 설정 추가">
+      <created>1680681864454</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1680681864454</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +228,9 @@
     <MESSAGE value="chore: 리포지토리 구조 변경 및 서버 코드 추가" />
     <MESSAGE value="feat: express 포트번호 변경" />
     <MESSAGE value="feat: express-postgresql 연동코드 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: express-postgresql 연동코드 추가" />
+    <MESSAGE value="feat: 세션 설정 추가" />
+    <MESSAGE value="feat: s3에 pdf 업로드 로직 수정" />
+    <MESSAGE value="feat: axios 설정 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: axios 설정 추가" />
   </component>
 </project>

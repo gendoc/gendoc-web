@@ -23,6 +23,7 @@ import {gapiLoaded, getGoogleAuthToken, gisLoaded, handleAuthClick, handleSignou
 import newScript from "../utils/scriptReader";
 import {uploadFileToS3} from "../utils/s3Client";
 import CenteredCircularProgress from "../components/progress/CenteredCircularProgress";
+import {postGuideDocuments} from "../api/documentApi";
 
 // ----------------------------------------------------------------------
 
@@ -52,20 +53,45 @@ export default function DashboardAppPage() {
             return;
         }
         const files = event.target.files;
+        const fileInfos = []
+        let uploadSuccess = true
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
             if (file.type === 'application/pdf') {
                 try {
                     const fileKey = await uploadFileToS3(file);
-                    console.log(fileKey);
+                    const fileInfo = {}
+                    fileInfo.fileName = file.name
+                    fileInfo.fileKey = fileKey
+                    fileInfos.push(fileInfo)
                 } catch (err) {
                     console.log('Error uploading file:', file.name);
+                    uploadSuccess = false
+                    break
                 }
             } else {
                 console.log('Invalid file type:', file.name);
+                uploadSuccess = false
+                break
             }
         }
-        setLoading(false);
+
+        try {
+            if (uploadSuccess){
+                await postGuideDocuments({files:fileInfos})
+            }
+        }catch (e) {
+            uploadSuccess = false
+
+        }finally {
+            if (!uploadSuccess){
+                alert("업로드 실패")
+            }
+            setLoading(false);
+        }
+
+
+
     };
 
     const handleWrittenFileUpload = async (event) => {
