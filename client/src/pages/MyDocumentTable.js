@@ -41,7 +41,7 @@ export default function MyDocumentTable(props) {
                             <TableCell component="th" scope="row">
                                 {document.fileName}
                             </TableCell>
-                            <TableCell align="right">{"작업중"}</TableCell>
+                            <TableCell align="right">{document.documentState}</TableCell>
                             <TableCell align="right">{moment(document.uploadTime, 'YYYYMMDDHHmmss z').add(9, "h").fromNow()}</TableCell>
                         </TableRow>
                     ))}

@@ -51,6 +51,7 @@ const findGuideDocuments =async (sessionId) => {
             doc.fileKey = row.file_key
             doc.accountId = row.account_id
             doc.uploadTime = row.upload_time
+            doc.documentState = row.document_state
             docs.push(doc)
         }
         await client.query("COMMIT")
@@ -76,6 +77,7 @@ const findWrittenDocuments =async (sessionId) => {
             doc.fileKey = row.document_id
             doc.accountId = row.account_id
             doc.uploadTime = row.upload_time
+            doc.documentState = row.document_state
             docs.push(doc)
         }
         await client.query("COMMIT")
