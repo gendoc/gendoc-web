@@ -1,5 +1,5 @@
 var express = require('express');
-const {insertGuideDocuments, insertWrittenDocument} = require("../service/documentService");
+const {insertGuideDocuments, insertWrittenDocument, findGuideDocuments, findWrittenDocuments} = require("../service/documentService");
 var router = express.Router();
 
 
@@ -23,6 +23,32 @@ router.post('/written', async function(req, res, next) {
     console.log(sessionID)
     await insertWrittenDocument(sessionID,file)
     res.send('respond with a resource');
+  }catch (e){
+    console.log(e)
+  }
+
+});
+
+router.get('/guide', async function(req, res, next) {
+  try {
+    const {sessionID} = req
+    console.log(sessionID)
+    const docs = await findGuideDocuments(sessionID);
+
+    res.send(JSON.stringify({documents:docs}));
+  }catch (e){
+    console.log(e)
+  }
+
+});
+
+router.get('/written', async function(req, res, next) {
+  try {
+    const {sessionID} = req
+    console.log(sessionID)
+    const docs = await findWrittenDocuments(sessionID);
+
+    res.send(JSON.stringify({documents:docs}));
   }catch (e){
     console.log(e)
   }

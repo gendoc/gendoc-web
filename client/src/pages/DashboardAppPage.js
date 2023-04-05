@@ -23,7 +23,7 @@ import {gapiLoaded, getGoogleAuthToken, gisLoaded, handleAuthClick, handleSignou
 import newScript from "../utils/scriptReader";
 import {uploadFileToS3} from "../utils/s3Client";
 import CenteredCircularProgress from "../components/progress/CenteredCircularProgress";
-import {postGuideDocuments, postWrittenDocument} from "../api/documentApi";
+import {getGuideDocument, postGuideDocuments, postWrittenDocument} from "../api/documentApi";
 
 // ----------------------------------------------------------------------
 
@@ -33,14 +33,13 @@ export default function DashboardAppPage() {
     const guideFileInputRef = React.useRef(null);
     const writtenFileInputRef = React.useRef(null);
     const [loading, setLoading] = React.useState(false);
-    useEffect(() => {
+    useEffect( () => {
         newScript("https://apis.google.com/js/api.js").then(function() {
             gapiLoaded()
         })
         newScript("https://accounts.google.com/gsi/client").then(function() {
             gisLoaded()
         })
-
 
 
     }, [])

@@ -13,3 +13,16 @@ export const postWrittenDocument = (postWrittenDocumentRequest) =>{
         postWrittenDocumentRequest
     )
 }
+
+export const getGuideDocument = () =>{
+
+    return axiosInstance.get(`/documents/guide`
+    )
+}
+
+
+export const getWrittenDocument = () =>{
+
+    return axiosInstance.get(`/documents/written`
+    )
+}
