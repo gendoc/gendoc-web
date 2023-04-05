@@ -21,4 +21,22 @@ const insertGuideDocuments =async (sessionId, files) => {
     }
 }
 
-module.exports = {insertGuideDocuments}
+const insertWrittenDocument =async (sessionId, file) => {
+    try{
+        await client.query("BEGIN")
+        const accountId = await findAccountIdBySessionId(sessionId)
+        await client.query(`insert into written_file (file_name,document_id,account_id) values ($1,$2,$3)`,[file.fileName,file.documentId,accountId.toString()])
+        await client.query("COMMIT")
+
+        return true
+    }catch(ex){
+        console.log("Failed to execute sendPostMessage"+ex)
+        await client.query("ROLLBACK")
+        return false
+    }finally{
+        // await client.end()
+        console.log("Cleaned.")
+    }
+}
+
+module.exports = {insertGuideDocuments,insertWrittenDocument}
