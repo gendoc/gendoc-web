@@ -23,16 +23,22 @@ import {gapiLoaded, getGoogleAuthToken, gisLoaded, handleAuthClick, handleSignou
 import newScript from "../utils/scriptReader";
 import {uploadFileToS3} from "../utils/s3Client";
 import CenteredCircularProgress from "../components/progress/CenteredCircularProgress";
-import {getGuideDocument, postGuideDocuments, postWrittenDocument} from "../api/documentApi";
+import {getGuideDocuments, postGuideDocuments, postWrittenDocument} from "../api/documentApi";
+import {useDispatch, useSelector} from "react-redux";
+import {callGetGuideDocuments, callGetWrittenDocuments} from "../modules/document";
 
 // ----------------------------------------------------------------------
 
 export default function DashboardAppPage() {
     const theme = useTheme();
-
+    const dispatch = useDispatch();
     const guideFileInputRef = React.useRef(null);
     const writtenFileInputRef = React.useRef(null);
     const [loading, setLoading] = React.useState(false);
+
+    const guideDocuments = useSelector((state) => state.documentReducer.guideDocuments);
+    const writtenDocuments = useSelector((state) => state.documentReducer.writtenDocuments);
+
     useEffect( () => {
         newScript("https://apis.google.com/js/api.js").then(function() {
             gapiLoaded()
@@ -40,9 +46,10 @@ export default function DashboardAppPage() {
         newScript("https://accounts.google.com/gsi/client").then(function() {
             gisLoaded()
         })
-
-
+        dispatch(callGetGuideDocuments())
+        dispatch(callGetWrittenDocuments())
     }, [])
+
 
 
     const handleGuideFilesUpload = async (event) => {
@@ -78,6 +85,7 @@ export default function DashboardAppPage() {
         try {
             if (uploadSuccess){
                 await postGuideDocuments({files:fileInfos})
+                dispatch(callGetGuideDocuments())
             }
         }catch (e) {
             uploadSuccess = false
@@ -137,6 +145,7 @@ export default function DashboardAppPage() {
             const responseData = await response.json();
             console.log(responseData);
             await postWrittenDocument({file:{fileName:file.name,documentId:responseData.id}})
+            dispatch(callGetWrittenDocuments())
         }catch (e) {
             console.log(e)
             alert("업로드 실패")
@@ -179,7 +188,18 @@ export default function DashboardAppPage() {
 
             <Container maxWidth="xl">
 
+                {guideDocuments.map((document)=>{
+                    return(
+                        <b>{document.fileName}<br/></b>
+                    )
 
+                })}
+                {writtenDocuments.map((document)=>{
+                    return(
+                        <b>{document.fileName}<br/></b>
+                        )
+
+                })}
                 {loading && <CenteredCircularProgress />}
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={3} style={{cursor:"pointer"}} >

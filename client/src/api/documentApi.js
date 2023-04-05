@@ -14,14 +14,14 @@ export const postWrittenDocument = (postWrittenDocumentRequest) =>{
     )
 }
 
-export const getGuideDocument = () =>{
+export const getGuideDocuments = () =>{
 
     return axiosInstance.get(`/documents/guide`
     )
 }
 
 
-export const getWrittenDocument = () =>{
+export const getWrittenDocuments = () =>{
 
     return axiosInstance.get(`/documents/written`
     )

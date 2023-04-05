@@ -4,12 +4,18 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
+import {applyMiddleware, createStore} from "redux";
+import thunk from "redux-thunk";
+import {Provider} from "react-redux";
+import rootReducer from "./modules";
 
 // ----------------------------------------------------------------------
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
-root.render(<App />);
+export const store = createStore(rootReducer, applyMiddleware(thunk));
+root.render(<Provider store={store}>
+    <App/>
+</Provider>);
 
 // If you want to enable client cache, register instead.
 serviceWorker.unregister();
