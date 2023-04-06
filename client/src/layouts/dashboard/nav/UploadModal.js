@@ -3,7 +3,7 @@ import {AppWidgetSummary} from "../../../sections/@dashboard/app";
 import React, {useEffect, useState} from "react";
 import {uploadFileToS3} from "../../../utils/s3Client";
 import {postGuideDocuments, postNoticeDocument, postWrittenDocument} from "../../../api/documentApi";
-import {callGetGuideDocuments, callGetWrittenDocuments, setLoading} from "../../../modules/document";
+import {callGetGuideDocuments, callGetWrittenDocuments, setLoading, setModalOpen} from "../../../modules/document";
 import {gapiLoaded, gisLoaded, handleAuthClick} from "../../../pages/GapiClient";
 import {useDispatch, useSelector} from "react-redux";
 import newScript from "../../../utils/scriptReader";
@@ -28,6 +28,14 @@ export default function UploadModal(props){
             setSelectedFiles({noticeFile:[],guideFile:[],writtenFile:[]})
         }
     }, [props.open]);
+
+    useEffect(() => {
+        if (loading){
+            document.body.classList.add('no-pointer-events');
+        }else {
+            document.body.classList.remove('no-pointer-events');
+        }
+    }, [loading]);
 
     const handleUploadFilesButton = async () => {
         if (validateFiles()){
@@ -61,7 +69,9 @@ export default function UploadModal(props){
         }catch (e) {
             console.log(e)
         }finally {
+            dispatch(setModalOpen(false))
             dispatch(setLoading(false))
+
         }
 
     }
