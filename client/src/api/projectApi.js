@@ -1,7 +1,8 @@
 import axiosInstance from "./index";
 
-export const postProject = () =>{
+export const postProject = (postProjectRequest) =>{
 
-    return axiosInstance.post(`/projects`
+    return axiosInstance.post(`/projects`,
+        postProjectRequest
     )
 }

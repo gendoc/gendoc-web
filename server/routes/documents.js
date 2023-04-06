@@ -7,10 +7,10 @@ var router = express.Router();
 
 router.post('/guide', async function(req, res, next) {
   try {
-    const {files} = req.body;
+    const {files,projectId} = req.body;
     const {sessionID} = req
     console.log(sessionID)
-    await insertGuideDocuments(sessionID,files)
+    await insertGuideDocuments(sessionID,files,projectId)
     res.send('respond with a resource');
   }catch (e){
     console.log(e)
@@ -20,10 +20,10 @@ router.post('/guide', async function(req, res, next) {
 
 router.post('/notice', async function(req, res, next) {
   try {
-    const {file} = req.body;
+    const {file,projectId} = req.body;
     const {sessionID} = req
     console.log(sessionID)
-    await insertNoticeDocument(sessionID,file)
+    await insertNoticeDocument(sessionID,file,projectId)
     res.send('respond with a resource');
   }catch (e){
     console.log(e)
@@ -34,10 +34,10 @@ router.post('/notice', async function(req, res, next) {
 
 router.post('/written', async function(req, res, next) {
   try {
-    const {file} = req.body;
+    const {file,projectId} = req.body;
     const {sessionID} = req
     console.log(sessionID)
-    await insertWrittenDocument(sessionID,file)
+    await insertWrittenDocument(sessionID,file,projectId)
     res.send('respond with a resource');
   }catch (e){
     console.log(e)

@@ -10,6 +10,7 @@ import newScript from "../../../utils/scriptReader";
 import CenteredCircularProgress from "../../../components/progress/CenteredCircularProgress";
 import Box from "@mui/material/Box";
 import {Item} from "../../../pages/Guide";
+import {postProject} from "../../../api/projectApi";
 
 
 export default function UploadModal(props){
@@ -52,10 +53,11 @@ export default function UploadModal(props){
     const uploadFiles = async () => {
         dispatch(setLoading(true))
         try {
-            console.log(selectedFiles.guideFile)
-            await uploadGuideFiles(selectedFiles.guideFile)
-            await uploadNoticeFile(selectedFiles.noticeFile[0])
-            await uploadWrittenFile(selectedFiles.writtenFile[0])
+            const res = await postProject({projectName: selectedFiles.writtenFile[0].name})
+            const {projectId} = res.data
+            await uploadGuideFiles(selectedFiles.guideFile,projectId)
+            await uploadNoticeFile(selectedFiles.noticeFile[0],projectId)
+            await uploadWrittenFile(selectedFiles.writtenFile[0],projectId)
         }catch (e) {
             console.log(e)
         }finally {
@@ -87,7 +89,7 @@ export default function UploadModal(props){
         return true
     }
 
-    const uploadGuideFiles = async (files) => {
+    const uploadGuideFiles = async (files,projectId) => {
         const fileInfos = []
         let uploadSuccess = true
         for (let i = 0; i < files.length; i++) {
@@ -113,7 +115,7 @@ export default function UploadModal(props){
 
         try {
             if (uploadSuccess) {
-                await postGuideDocuments({files: fileInfos})
+                await postGuideDocuments({files: fileInfos,projectId:projectId})
             }
         } catch (e) {
             uploadSuccess = false
@@ -125,7 +127,7 @@ export default function UploadModal(props){
         }
     }
 
-    const uploadNoticeFile = async (file) => {
+    const uploadNoticeFile = async (file,projectId) => {
         let uploadSuccess = true
         const fileInfo = {}
 
@@ -147,7 +149,7 @@ export default function UploadModal(props){
 
         try {
             if (uploadSuccess) {
-                await postNoticeDocument({file: fileInfo})
+                await postNoticeDocument({file: fileInfo,projectId:projectId})
             }
         } catch (e) {
             uploadSuccess = false
@@ -159,7 +161,7 @@ export default function UploadModal(props){
         }
     }
 
-    const uploadWrittenFile = async (file) => {
+    const uploadWrittenFile = async (file,projectId) => {
         const accessToken = localStorage.getItem("googleAccessToken")
 
         // Set the metadata for the file, including the desired mimeType for the Google Document
@@ -196,7 +198,7 @@ export default function UploadModal(props){
             // Parse the response JSON and return the file ID
             const responseData = await response.json();
             console.log(responseData);
-            await postWrittenDocument({file:{fileName:file.name,documentId:responseData.id}})
+            await postWrittenDocument({file:{fileName:file.name,documentId:responseData.id},projectId:projectId})
         }catch (e) {
             console.log(e)
             alert("작성한 Word 문서 업로드 실패")

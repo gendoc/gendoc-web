@@ -1,12 +1,12 @@
 const client = require("../db/postgresqlClient");
 const {findAccountIdBySessionId} = require("./accountService");
 
-const insertGuideDocuments =async (sessionId, files) => {
+const insertGuideDocuments =async (sessionId, files,projectId) => {
     try{
         await client.query("BEGIN")
         const accountId = await findAccountIdBySessionId(sessionId)
         for (file of files){
-            await client.query(`insert into guide_file (file_name,file_key,account_id) values ($1,$2,$3)`,[file.fileName,file.fileKey,accountId.toString()])
+            await client.query(`insert into guide_file (file_name,file_key,account_id,project_id) values ($1,$2,$3,$4)`,[file.fileName,file.fileKey,accountId.toString(),projectId.toString()])
         }
         await client.query("COMMIT")
 
@@ -21,11 +21,11 @@ const insertGuideDocuments =async (sessionId, files) => {
     }
 }
 
-const insertNoticeDocument =async (sessionId, file) => {
+const insertNoticeDocument =async (sessionId, file,projectId) => {
     try{
         await client.query("BEGIN")
         const accountId = await findAccountIdBySessionId(sessionId)
-        await client.query(`insert into notice_file (file_name,file_key,account_id) values ($1,$2,$3)`,[file.fileName,file.fileKey,accountId.toString()])
+        await client.query(`insert into notice_file (file_name,file_key,account_id,project_id) values ($1,$2,$3,$4)`,[file.fileName,file.fileKey,accountId.toString(),projectId.toString()])
         await client.query("COMMIT")
 
         return true
@@ -39,11 +39,11 @@ const insertNoticeDocument =async (sessionId, file) => {
     }
 }
 
-const insertWrittenDocument =async (sessionId, file) => {
+const insertWrittenDocument =async (sessionId, file,projectId) => {
     try{
         await client.query("BEGIN")
         const accountId = await findAccountIdBySessionId(sessionId)
-        await client.query(`insert into written_file (file_name,document_id,account_id) values ($1,$2,$3)`,[file.fileName,file.documentId,accountId.toString()])
+        await client.query(`insert into written_file (file_name,document_id,account_id,project_id) values ($1,$2,$3,$4)`,[file.fileName,file.documentId,accountId.toString(),projectId.toString()])
         await client.query("COMMIT")
 
         return true
