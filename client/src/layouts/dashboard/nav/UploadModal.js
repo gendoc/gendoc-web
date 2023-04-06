@@ -148,12 +148,13 @@ export default function UploadModal(props){
     return(
         <Modal {...props} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
             <div>
-                <div style={{backgroundColor:"white", borderRadius: "14px",padding:"30px"
+                <div style={{backgroundColor:"#E9EEFE", borderRadius: "14px",paddingInline:"30px", paddingBlock:"60px"
                 }}>
 
 
                     <div>
                         {loading && <CenteredCircularProgress />}
+
                         <Container maxWidth={"sm"} >
                             <Grid item xs={12} sm={6} md={3} style={{cursor:"pointer"}} >
                                 <input

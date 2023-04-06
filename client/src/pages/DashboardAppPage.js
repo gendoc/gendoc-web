@@ -24,7 +24,7 @@ import {uploadFileToS3} from "../utils/s3Client";
 import CenteredCircularProgress from "../components/progress/CenteredCircularProgress";
 import {getGuideDocuments, postGuideDocuments, postWrittenDocument} from "../api/documentApi";
 import {useDispatch, useSelector} from "react-redux";
-import {callGetGuideDocuments, callGetWrittenDocuments} from "../modules/document";
+import {callGetGuideDocuments, callGetWrittenDocuments, setModalOpen} from "../modules/document";
 import MyDocumentTable from "./MyDocumentTable";
 import palette from "../theme/palette";
 import Guide from "./Guide";
@@ -101,7 +101,9 @@ export default function DashboardAppPage() {
                             <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px",marginBottom:"88px"}}>
                                 <MyDocumentTable documents={[]}/>
                             </Paper>
-                            <div style={{width:'100%', display:"flex", justifyContent:"center", marginBottom:"74px"}}>
+                            <div style={{width:'100%', display:"flex", justifyContent:"center", marginBottom:"74px", cursor:"pointer"}}
+                                 onClick={()=>{dispatch(setModalOpen(true))}}
+                            >
                                 <Paper sx={{ width: '80%', mb: 2, background: "#EFF0F4", textAlign:"center"}} style={{marginTop:"10px",padding:"10px",borderRadius:"50px"}}>
                                     <Typography
                                         sx={{ flex: '1 1 100%' , }}

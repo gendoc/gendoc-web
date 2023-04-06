@@ -3,6 +3,7 @@ import {getGuideDocuments, getWrittenDocuments} from "../api/documentApi";
 const GET_GUIDE_DOCUMENTS_SUCCESS = "GET_GUIDE_DOCUMENTS_SUCCESS"
 const GET_WRITTEN_DOCUMENTS_SUCCESS = "GET_WRITTEN_DOCUMENTS_SUCCESS"
 const SET_LOADING = "SET_LOADING"
+const SET_MODAL_OPEN = "SET_MODAL_OPEN"
 
 export const getGuideDocumentsSuccess = (documents) => ({
     type: GET_GUIDE_DOCUMENTS_SUCCESS,
@@ -17,6 +18,11 @@ export const getWrittenDocumentsSuccess = (documents) => ({
 export const setLoading = (isLoading) => ({
     type: SET_LOADING,
     isLoading: isLoading
+});
+
+export const setModalOpen = (isModalOpen) => ({
+    type: SET_MODAL_OPEN,
+    isModalOpen: isModalOpen
 });
 
 export const callGetGuideDocuments =
@@ -42,7 +48,8 @@ export const callGetWrittenDocuments =
 const initialState = {
     guideDocuments: [],
     writtenDocuments: [],
-    loading: false
+    loading: false,
+    modalOpen: false
 }
 
 function documentReducer(
@@ -64,6 +71,11 @@ function documentReducer(
             return {
                 ...state,
                 loading: action.isLoading
+            }
+        case SET_MODAL_OPEN:
+            return {
+                ...state,
+                modalOpen: action.isModalOpen
             }
         default:
             return state

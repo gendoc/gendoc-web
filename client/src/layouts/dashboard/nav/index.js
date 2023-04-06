@@ -15,6 +15,8 @@ import NavSection from '../../../components/nav-section';
 //
 import navConfig from './config';
 import UploadModal from "./UploadModal";
+import {useDispatch, useSelector} from "react-redux";
+import {setModalOpen} from "../../../modules/document";
 
 // ----------------------------------------------------------------------
 
@@ -37,9 +39,10 @@ Nav.propTypes = {
 
 export default function Nav({ openNav, onCloseNav }) {
   const { pathname } = useLocation();
-
+  const dispatch  = useDispatch()
   const isDesktop = useResponsive('up', 'lg');
-  const [modalOpen, setModalOpen] = useState(false);
+  const modalOpen = useSelector((state) => state.documentReducer.modalOpen);
+  console.log("modalopen"+modalOpen)
   useEffect(() => {
     if (openNav) {
       onCloseNav();
@@ -60,10 +63,12 @@ export default function Nav({ openNav, onCloseNav }) {
 
       <UploadModal open={modalOpen}
                    onClose={() => {
-        setModalOpen(false)
-      }}/>
+        dispatch(setModalOpen(false))
+      }}
+                   BackdropProps={{ invisible: true }}
+      />
 
-      <Box sx={{ mb: 5, mx: 2.5 , cursor:"pointer"}} onClick={()=>{setModalOpen(true)}}>
+      <Box sx={{ mb: 5, mx: 2.5 , cursor:"pointer"}} onClick={()=>{dispatch(setModalOpen(true))}}>
 
         <Link underline="none">
           <StyledAccount>
