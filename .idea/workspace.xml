@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 업로드 프로세스 변경">
-      <change afterPath="$PROJECT_DIR$/client/src/api/projectApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/projects.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/service/projectService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/DashboardAppPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/DashboardAppPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
+    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: project id 가져오는 api 추가">
+      <change beforePath="$PROJECT_DIR$/server/routes/projects.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/projects.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/projectService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/projectService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1680499915657</updated>
       <workItem from="1680499916782" duration="39109000" />
-      <workItem from="1680671862374" duration="57702000" />
+      <workItem from="1680671862374" duration="57908000" />
     </task>
     <task id="LOCAL-00001" summary="chore: eslint 설정 제거">
       <created>1680529839505</created>
@@ -327,7 +323,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680780394455</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="feat: project id 가져오는 api 추가">
+      <created>1680780976712</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1680780976712</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,7 +348,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: 로고 이미지 추가" />
     <MESSAGE value="feat: yarn 제거" />
     <MESSAGE value="feat: 가이드 문서, 작성 문성 업로드 기능 추가" />
     <MESSAGE value="chore: 리포지토리 구조 변경 및 서버 코드 추가" />
@@ -370,6 +372,7 @@
     <MESSAGE value="feat: 모집공고 업로드 api 추가" />
     <MESSAGE value="feat: 모집공고 조회 api 추가" />
     <MESSAGE value="feat: 업로드 프로세스 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 업로드 프로세스 변경" />
+    <MESSAGE value="feat: project id 가져오는 api 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: project id 가져오는 api 추가" />
   </component>
 </project>

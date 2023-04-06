@@ -6,10 +6,10 @@ var router = express.Router();
 
 router.post('/', async function(req, res, next) {
   try {
-    const {files} = req.body;
+    const {projectName} = req.body;
     const {sessionID} = req
     console.log(sessionID)
-    const projectId = await insertProject(sessionID);
+    const projectId = await insertProject(sessionID,projectName);
     res.send(JSON.stringify({projectId:projectId}));
   }catch (e){
     console.log(e)
