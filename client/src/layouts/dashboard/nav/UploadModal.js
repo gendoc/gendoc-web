@@ -1,20 +1,24 @@
-import {Container, Grid, Modal} from "@mui/material";
+import {Container, Grid, Modal, Typography} from "@mui/material";
 import {AppWidgetSummary} from "../../../sections/@dashboard/app";
 import React from "react";
 import {uploadFileToS3} from "../../../utils/s3Client";
-import {postGuideDocuments, postWrittenDocument} from "../../../api/documentApi";
+import {postGuideDocuments, postNoticeDocument, postWrittenDocument} from "../../../api/documentApi";
 import {callGetGuideDocuments, callGetWrittenDocuments, setLoading} from "../../../modules/document";
 import {gapiLoaded, gisLoaded, handleAuthClick} from "../../../pages/GapiClient";
 import {useDispatch, useSelector} from "react-redux";
 import newScript from "../../../utils/scriptReader";
 import CenteredCircularProgress from "../../../components/progress/CenteredCircularProgress";
+import Box from "@mui/material/Box";
+import {Item} from "../../../pages/Guide";
 
 export default function UploadModal(props){
 
     const dispatch = useDispatch();
     const guideFileInputRef = React.useRef(null);
+    const noticeFileInputRef = React.useRef(null);
     const writtenFileInputRef = React.useRef(null);
     const loading = useSelector((state) => state.documentReducer.loading);
+
 
 
     const handleGuideFilesUpload = async (event) => {
@@ -51,6 +55,50 @@ export default function UploadModal(props){
             if (uploadSuccess){
                 await postGuideDocuments({files:fileInfos})
                 dispatch(callGetGuideDocuments())
+            }
+        }catch (e) {
+            uploadSuccess = false
+
+        }finally {
+            if (!uploadSuccess){
+                alert("업로드 실패")
+            }
+            dispatch(setLoading(false));
+        }
+
+
+
+    };
+
+    const handleNoticeFileUpload = async (event) => {
+        dispatch(setLoading(true))
+        if (event.target.files.length == 0) {
+            dispatch(setLoading(false));
+            return;
+        }
+        const file = event.target.files[0];
+        let uploadSuccess = true
+        const fileInfo = {}
+
+            if (file.type === 'application/pdf') {
+                try {
+                    const fileKey = await uploadFileToS3(file);
+
+                    fileInfo.fileName = file.name
+                    fileInfo.fileKey = fileKey
+                } catch (err) {
+                    console.log('Error uploading file:', file.name);
+                    uploadSuccess = false
+                }
+            } else {
+                console.log('Invalid file type:', file.name);
+                uploadSuccess = false
+            }
+
+
+        try {
+            if (uploadSuccess){
+                await postNoticeDocument({file:fileInfo})
             }
         }catch (e) {
             uploadSuccess = false
@@ -124,6 +172,10 @@ export default function UploadModal(props){
         guideFileInputRef.current.click();
     };
 
+    const handleNoticeFileUploadButtonClick = () => {
+        noticeFileInputRef.current.click();
+    };
+
     const handleWrittenFileUploadButtonClick = async (e) => {
         dispatch(setLoading(true))
         if (window.gapi.client.getToken() == null) {
@@ -152,35 +204,132 @@ export default function UploadModal(props){
                 }}>
 
 
-                    <div>
+                    <div style={{display:"flex",flexDirection:"column",flexWrap:"wrap"}}>
                         {loading && <CenteredCircularProgress />}
 
-                        <Container maxWidth={"sm"} >
-                            <Grid item xs={12} sm={6} md={3} style={{cursor:"pointer"}} >
-                                <input
-                                    type="file"
-                                    id="pdfUploader"
-                                    accept=".pdf"
-                                    multiple
-                                    style={{display: 'none'}}
-                                    ref={guideFileInputRef}
-                                    onChange={handleGuideFilesUpload}
-                                />
-                                <AppWidgetSummary onClick={handleGuideFilesUploadButtonClick} title="가이드 문서 업로드" icon={'ant-design:android-filled'}/>
+                        <div style={{display:"flex"}}>
+                            <Typography
+                                id="tableTitle"
+                                component="div"
+                                fontSize={"20px"}
+                                style={{marginRight:"6px",fontWeight:"bold"}}
+                            >
+                                새 프로젝트
+                            </Typography>
+
+                            <Typography
+                                id="tableTitle"
+                                component="div"
+                                fontSize={"20px"}
+                            >
+                                (New DOC)
+                            </Typography>
+                        </div>
+
+
+                        <Grid   container style={{display:"flex",justifyContent:"center"}}>
+
+                            <Grid item style={{ height: '100%', width: '100%'}}  >
+                                <Box
+                                    sx={{
+                                        p: 2,
+                                        bgcolor: 'background.default',
+                                        display: 'grid',
+                                        gridTemplateColumns: { md: '1fr' },
+                                        gap: 2,
+                                        alignContent: 'stretch'
+                                    }}
+                                    style={{background:"#E9EEFE"}}
+                                >
+
+                                    <Item key={"공고 가이드 PDF 문서"} style={{
+                                        display: "flex",
+                                        height:"60px",width:"272px",borderRadius:"17px",
+                                        paddingBlock:"5px",paddingInline:"14px",textAlign:"center",justifyContent:"center",
+                                        justifySelf:"center", alignItems:"center", cursor:"pointer"
+                                    }}
+                                          onClick={handleNoticeFileUploadButtonClick}
+                                    >
+
+                                        <input
+                                            type="file"
+                                            accept=".pdf"
+                                            style={{display: 'none'}}
+                                            ref={noticeFileInputRef}
+                                            onChange={handleNoticeFileUpload}
+                                        />
+
+                                        <Typography style={{whiteSpace: 'pre-wrap'}}
+                                                    fontSize={"17px"}
+                                                    color={"black"}
+                                                    style={{marginRight:"6px"}}>
+                                            {"공고 가이드 PDF 문서"}
+                                        </Typography>
+
+                                    </Item>
+
+
+
+                                    <Item key={ "작성 가이드 문서"} style={{
+                                        display: "flex",
+                                        height:"60px",width:"272px",borderRadius:"17px",
+                                        paddingBlock:"5px",paddingInline:"14px",textAlign:"center",justifyContent:"center",
+                                        justifySelf:"center", alignItems:"center", cursor:"pointer"
+                                    }}
+                                          onClick={handleGuideFilesUploadButtonClick}
+                                    >
+
+                                        <input
+                                            type="file"
+                                            accept=".pdf"
+                                            multiple
+                                            style={{display: 'none'}}
+                                            ref={guideFileInputRef}
+                                            onChange={handleGuideFilesUpload}
+                                        />
+
+                                        <Typography style={{whiteSpace: 'pre-wrap'}}
+                                                    fontSize={"17px"}
+                                                    color={"black"}
+                                                    style={{marginRight:"6px"}}>
+                                            { "작성 가이드 문서"}
+                                        </Typography>
+
+                                    </Item>
+
+                                    <Item key={"작성한 Word 문서"} style={{
+                                        display: "flex",
+                                        height:"60px",width:"272px",borderRadius:"17px",
+                                        paddingBlock:"5px",paddingInline:"14px",textAlign:"center",justifyContent:"center",
+                                        justifySelf:"center", alignItems:"center", cursor:"pointer"
+                                    }}
+                                          onClick={handleWrittenFileUploadButtonClick}
+                                    >
+
+                                        <input
+                                            type="file"
+                                            accept=".pdf"
+                                            multiple
+                                            style={{display: 'none'}}
+                                            ref={writtenFileInputRef}
+                                            onChange={handleWrittenFileUpload}
+                                        />
+
+                                        <Typography style={{whiteSpace: 'pre-wrap'}}
+                                                    fontSize={"17px"}
+                                                    color={"black"}
+                                                    style={{marginRight:"6px"}}>
+                                            {"작성한 Word 문서"}
+                                        </Typography>
+
+                                    </Item>
+
+
+                                </Box>
                             </Grid>
 
-                            <Grid item xs={12} sm={6} md={3} style={{cursor:"pointer"}} >
-                                <input
-                                    type="file"
-                                    id="pdfUploader"
-                                    accept=".docx"
-                                    style={{display: 'none'}}
-                                    ref={writtenFileInputRef}
-                                    onChange={handleWrittenFileUpload}
-                                />
-                                <AppWidgetSummary onClick={handleWrittenFileUploadButtonClick} title="작성 문서 업로드" color="info" icon={'ant-design:apple-filled'}/>
-                            </Grid>
-                        </Container>
+                        </Grid>
+
                     </div>
 
                 </div>

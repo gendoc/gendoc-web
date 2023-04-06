@@ -6,7 +6,7 @@ import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import {red} from "@mui/material/colors";
 import {Typography} from "@mui/material";
 
-const Item = styled(Paper)(({ theme }) => ({
+export const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
@@ -36,7 +36,7 @@ export default function Guide(state) {
                             {["새 프로젝트를 눌러 가이드 문서와 사업계획서 초안을 업로드해주세요. \n(만약, 전문가 작성 가이드가 없으시다면 genDOC에서 기본 제공하는 전문가 작성 가이드를 단운 받아 업로드 해주세요.)",
                                 "새 프로젝트를 눌러 가이드 문서와 사업계획서 초안을 업로드해주세요. (만약, 전문가 작성 가이드가 없으시다면 genDOC에서 기본 제공하는 전문가 작성 가이드를 단운 받아 업로드 해주세요.)",
                                 "새 프로젝트를 눌러 가이드 문서와 사업계획서 초안을 업로드해주세요. (만약, 전문가 작성 가이드가 없으시다면 genDOC에서 기본 제공하는 전문가 작성 가이드를 단운 받아 업로드 해주세요.)"].map((elevation) => (
-                                        <Item key={elevation} style={{height:"491px",borderRadius:"17px",paddingBlock:"37px",paddingInline:"20px",textAlign:"left"}} >
+                                        <Item key={Math.floor(Math.random() * 10000)} style={{height:"491px",borderRadius:"17px",paddingBlock:"37px",paddingInline:"20px",textAlign:"left"}} >
 
                                             <Typography
                                                 sx={{ flex: '1 1 100%' }}
