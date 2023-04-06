@@ -1,5 +1,7 @@
 var express = require('express');
-const {insertGuideDocuments, insertWrittenDocument, findGuideDocuments, findWrittenDocuments, insertNoticeDocument} = require("../service/documentService");
+const {insertGuideDocuments, insertWrittenDocument, findGuideDocuments, findWrittenDocuments, insertNoticeDocument,
+  findNoticeDocuments
+} = require("../service/documentService");
 var router = express.Router();
 
 
@@ -48,6 +50,19 @@ router.get('/guide', async function(req, res, next) {
     const {sessionID} = req
     console.log(sessionID)
     const docs = await findGuideDocuments(sessionID);
+
+    res.send(JSON.stringify({documents:docs}));
+  }catch (e){
+    console.log(e)
+  }
+
+});
+
+router.get('/notice', async function(req, res, next) {
+  try {
+    const {sessionID} = req
+    console.log(sessionID)
+    const docs = await findNoticeDocuments(sessionID);
 
     res.send(JSON.stringify({documents:docs}));
   }catch (e){

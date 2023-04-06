@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 모달 오픈상태 전역으로 변경">
+    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 모집공고 업로드 api 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/documentApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/documentApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/UploadModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/UploadModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Guide.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Guide.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes/documents.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/documents.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/service/documentService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/documentService.js" afterDir="false" />
     </list>
@@ -100,7 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1680499915657</updated>
       <workItem from="1680499916782" duration="39109000" />
-      <workItem from="1680671862374" duration="48659000" />
+      <workItem from="1680671862374" duration="48870000" />
     </task>
     <task id="LOCAL-00001" summary="chore: eslint 설정 제거">
       <created>1680529839505</created>
@@ -305,7 +302,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680766106890</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="feat: 모집공고 업로드 api 추가">
+      <created>1680770413477</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1680770413477</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,7 +327,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="chore: eslint 설정 제거" />
     <MESSAGE value="feat: GoogleDrivePicker 추가" />
     <MESSAGE value="feat: script 읽는 util 추가" />
     <MESSAGE value="feat: 로고 이미지 추가" />
@@ -348,6 +351,7 @@
     <MESSAGE value="feat: 문서 업로드 모달형식으로 변경" />
     <MESSAGE value="feat: 사용법 컴포넌트 추가" />
     <MESSAGE value="feat: 모달 오픈상태 전역으로 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 모달 오픈상태 전역으로 변경" />
+    <MESSAGE value="feat: 모집공고 업로드 api 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 모집공고 업로드 api 추가" />
   </component>
 </project>
