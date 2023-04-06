@@ -1,6 +1,6 @@
-import {Container, Grid, Modal, Typography} from "@mui/material";
+import {Button, Container, Grid, Modal, Typography} from "@mui/material";
 import {AppWidgetSummary} from "../../../sections/@dashboard/app";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {uploadFileToS3} from "../../../utils/s3Client";
 import {postGuideDocuments, postNoticeDocument, postWrittenDocument} from "../../../api/documentApi";
 import {callGetGuideDocuments, callGetWrittenDocuments, setLoading} from "../../../modules/document";
@@ -11,6 +11,7 @@ import CenteredCircularProgress from "../../../components/progress/CenteredCircu
 import Box from "@mui/material/Box";
 import {Item} from "../../../pages/Guide";
 
+
 export default function UploadModal(props){
 
     const dispatch = useDispatch();
@@ -19,15 +20,74 @@ export default function UploadModal(props){
     const writtenFileInputRef = React.useRef(null);
     const loading = useSelector((state) => state.documentReducer.loading);
 
+    const [selectedFiles, setSelectedFiles] = useState({noticeFile:[],guideFile:[],writtenFile:[]});
 
-
-    const handleGuideFilesUpload = async (event) => {
-        dispatch(setLoading(true))
-        if (event.target.files.length == 0) {
-            dispatch(setLoading(false));
-            return;
+    useEffect(() => {
+        if (props.open){
+            setSelectedFiles({noticeFile:[],guideFile:[],writtenFile:[]})
         }
-        const files = event.target.files;
+    }, [props.open]);
+
+    const handleUploadFilesButton = async () => {
+        if (validateFiles()){
+            if (localStorage.getItem("googleAccessToken") == null) {
+                handleAuthClick(uploadFiles)
+            } else {
+                const accessToken = localStorage.getItem("googleAccessToken");
+                const url = `https://oauth2.googleapis.com/tokeninfo?access_token=${accessToken}`;
+
+                const response = await fetch(url);
+                if (response.ok) {
+                    uploadFiles()
+                }else{
+                    handleAuthClick(uploadFiles)
+                }
+
+
+            }
+        }
+    }
+
+
+    const uploadFiles = async () => {
+        dispatch(setLoading(true))
+        try {
+            console.log(selectedFiles.guideFile)
+            await uploadGuideFiles(selectedFiles.guideFile)
+            await uploadNoticeFile(selectedFiles.noticeFile[0])
+            await uploadWrittenFile(selectedFiles.writtenFile[0])
+        }catch (e) {
+            console.log(e)
+        }finally {
+            dispatch(setLoading(false))
+        }
+
+    }
+
+
+    const validateFiles = () => {
+        for (const prop in selectedFiles){
+            if(selectedFiles[prop].length==0){
+                switch(prop) {
+                    case "noticeFile":
+                        alert("공고 가이드 문서를 업로드해 주세요")
+                        break;
+                    case "guideFile":
+                        alert("작성 가이드 문서를 업로드해 주세요")
+                        break;
+                    case "writtenFile":
+                        alert("작성한 Word 문서를 업로드해 주세요")
+                        break;
+                    default:
+
+                }
+                return false
+            }
+        }
+        return true
+    }
+
+    const uploadGuideFiles = async (files) => {
         const fileInfos = []
         let uploadSuccess = true
         for (let i = 0; i < files.length; i++) {
@@ -52,76 +112,55 @@ export default function UploadModal(props){
         }
 
         try {
-            if (uploadSuccess){
-                await postGuideDocuments({files:fileInfos})
-                dispatch(callGetGuideDocuments())
+            if (uploadSuccess) {
+                await postGuideDocuments({files: fileInfos})
             }
-        }catch (e) {
+        } catch (e) {
             uploadSuccess = false
 
-        }finally {
-            if (!uploadSuccess){
-                alert("업로드 실패")
+        } finally {
+            if (!uploadSuccess) {
+                alert("작성 가이드 문서 업로드 실패")
             }
-            dispatch(setLoading(false));
         }
+    }
 
-
-
-    };
-
-    const handleNoticeFileUpload = async (event) => {
-        dispatch(setLoading(true))
-        if (event.target.files.length == 0) {
-            dispatch(setLoading(false));
-            return;
-        }
-        const file = event.target.files[0];
+    const uploadNoticeFile = async (file) => {
         let uploadSuccess = true
         const fileInfo = {}
 
-            if (file.type === 'application/pdf') {
-                try {
-                    const fileKey = await uploadFileToS3(file);
+        if (file.type === 'application/pdf') {
+            try {
+                const fileKey = await uploadFileToS3(file);
 
-                    fileInfo.fileName = file.name
-                    fileInfo.fileKey = fileKey
-                } catch (err) {
-                    console.log('Error uploading file:', file.name);
-                    uploadSuccess = false
-                }
-            } else {
-                console.log('Invalid file type:', file.name);
+                fileInfo.fileName = file.name
+                fileInfo.fileKey = fileKey
+            } catch (err) {
+                console.log('Error uploading file:', file.name);
                 uploadSuccess = false
             }
+        } else {
+            console.log('Invalid file type:', file.name);
+            uploadSuccess = false
+        }
 
 
         try {
-            if (uploadSuccess){
-                await postNoticeDocument({file:fileInfo})
+            if (uploadSuccess) {
+                await postNoticeDocument({file: fileInfo})
             }
-        }catch (e) {
+        } catch (e) {
             uploadSuccess = false
 
-        }finally {
-            if (!uploadSuccess){
-                alert("업로드 실패")
+        } finally {
+            if (!uploadSuccess) {
+                alert("공고 가이드 문서 업로드 실패")
             }
-            dispatch(setLoading(false));
         }
+    }
 
-
-
-    };
-
-    const handleWrittenFileUpload = async (event) => {
-        dispatch(setLoading(true))
-        if (event.target.files.length==0){
-            dispatch(setLoading(false))
-            return
-        }
-        const file = event.target.files[0];
-        const accessToken = window.gapi.client.getToken().access_token;
+    const uploadWrittenFile = async (file) => {
+        const accessToken = localStorage.getItem("googleAccessToken")
 
         // Set the metadata for the file, including the desired mimeType for the Google Document
         const metadata = {
@@ -158,14 +197,85 @@ export default function UploadModal(props){
             const responseData = await response.json();
             console.log(responseData);
             await postWrittenDocument({file:{fileName:file.name,documentId:responseData.id}})
-            dispatch(callGetWrittenDocuments())
         }catch (e) {
             console.log(e)
-            alert("업로드 실패")
+            alert("작성한 Word 문서 업로드 실패")
         }
 
+    }
 
-        dispatch(setLoading(false))
+
+
+    function cloneObject(obj) {
+        var clone = {};
+        for (var key in obj) {
+            if (typeof obj[key] == "object" && obj[key] != null) {
+                clone[key] = cloneObject(obj[key]);
+            } else {
+                clone[key] = obj[key];
+            }
+        }
+        return clone;
+    }
+
+    const handleGuideFilesUpload = async (event) => {
+
+        if (event.target.files.length == 0) {
+            dispatch(setLoading(false));
+            return;
+        }
+        const files = event.target.files;
+
+        ////////////////////////////////////////////////////
+        const fileList = []
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            fileList.push(file)
+        }
+         setSelectedFiles(prevState => ({
+             ...prevState,
+             guideFile: fileList
+         }));
+        ////////////////////////////////////////////////////
+
+    };
+    
+    
+
+    const handleNoticeFileUpload = async (event) => {
+
+        if (event.target.files.length == 0) {
+            dispatch(setLoading(false));
+            return;
+        }
+        const file = event.target.files[0];
+        ////////////////////////////////////////////////////
+        const fileList = []
+        fileList.push(file)
+        setSelectedFiles(prevState => ({
+            ...prevState,
+            noticeFile: fileList
+        }));
+        ////////////////////////////////////////////////////
+    };
+
+    const handleWrittenFileUpload = async (event) => {
+
+        if (event.target.files.length==0){
+            dispatch(setLoading(false))
+            return
+        }
+        const file = event.target.files[0];
+        ////////////////////////////////////////////////////
+        const fileList = []
+        fileList.push(file)
+        selectedFiles.writtenFile = fileList
+        setSelectedFiles(prevState => ({
+            ...prevState,
+            writtenFile: fileList
+        }));
+        ////////////////////////////////////////////////////
+
     };
 
     const handleGuideFilesUploadButtonClick = () => {
@@ -177,24 +287,8 @@ export default function UploadModal(props){
     };
 
     const handleWrittenFileUploadButtonClick = async (e) => {
-        dispatch(setLoading(true))
-        if (window.gapi.client.getToken() == null) {
-            handleAuthClick()
-        } else {
-            const accessToken = window.gapi.client.getToken().access_token;
-            const url = `https://oauth2.googleapis.com/tokeninfo?access_token=${accessToken}`;
 
-            const response = await fetch(url);
-            if (response.ok) {
-                writtenFileInputRef.current.click();
-            } else {
-                handleAuthClick()
-            }
-
-
-
-        }
-        dispatch(setLoading(false))
+        writtenFileInputRef.current.click();
     };
 
     return(
@@ -244,9 +338,9 @@ export default function UploadModal(props){
 
                                     <Item key={"공고 가이드 PDF 문서"} style={{
                                         display: "flex",
-                                        height:"60px",width:"272px",borderRadius:"17px",
+                                        minHeight:"60px",minWidth:"272px",borderRadius:"17px",
                                         paddingBlock:"5px",paddingInline:"14px",textAlign:"center",justifyContent:"center",
-                                        justifySelf:"center", alignItems:"center", cursor:"pointer"
+                                        justifySelf:"center", alignItems:"center", cursor:"pointer", flexDirection:"column"
                                     }}
                                           onClick={handleNoticeFileUploadButtonClick}
                                     >
@@ -266,15 +360,25 @@ export default function UploadModal(props){
                                             {"공고 가이드 PDF 문서"}
                                         </Typography>
 
+                                        {selectedFiles.noticeFile.map((file,index)=>(
+                                            <Typography style={{whiteSpace: 'pre-wrap'}}
+                                                        fontSize={"12px"}
+                                                        color={"black"}
+                                                        style={{marginRight:"6px"}}>
+                                                {`${index+1}. ${file.name}`}
+                                            </Typography>
+                                        ))}
+
+
                                     </Item>
 
 
 
                                     <Item key={ "작성 가이드 문서"} style={{
                                         display: "flex",
-                                        height:"60px",width:"272px",borderRadius:"17px",
+                                        minHeight:"60px",minWidth:"272px",borderRadius:"17px",
                                         paddingBlock:"5px",paddingInline:"14px",textAlign:"center",justifyContent:"center",
-                                        justifySelf:"center", alignItems:"center", cursor:"pointer"
+                                        justifySelf:"center", alignItems:"center", cursor:"pointer", flexDirection:"column"
                                     }}
                                           onClick={handleGuideFilesUploadButtonClick}
                                     >
@@ -295,20 +399,29 @@ export default function UploadModal(props){
                                             { "작성 가이드 문서"}
                                         </Typography>
 
+                                        {selectedFiles.guideFile.map((file,index)=>(
+                                            <Typography style={{whiteSpace: 'pre-wrap'}}
+                                                        fontSize={"12px"}
+                                                        color={"black"}
+                                                        style={{marginRight:"6px"}}>
+                                                {`${index+1}. ${file.name}`}
+                                            </Typography>
+                                        ))}
+
                                     </Item>
 
                                     <Item key={"작성한 Word 문서"} style={{
                                         display: "flex",
-                                        height:"60px",width:"272px",borderRadius:"17px",
+                                        minHeight:"60px",minWidth:"272px",borderRadius:"17px",
                                         paddingBlock:"5px",paddingInline:"14px",textAlign:"center",justifyContent:"center",
-                                        justifySelf:"center", alignItems:"center", cursor:"pointer"
+                                        justifySelf:"center", alignItems:"center", cursor:"pointer", flexDirection:"column"
                                     }}
                                           onClick={handleWrittenFileUploadButtonClick}
                                     >
 
                                         <input
                                             type="file"
-                                            accept=".pdf"
+                                            accept=".docx"
                                             multiple
                                             style={{display: 'none'}}
                                             ref={writtenFileInputRef}
@@ -322,6 +435,14 @@ export default function UploadModal(props){
                                             {"작성한 Word 문서"}
                                         </Typography>
 
+                                        {selectedFiles.writtenFile.map((file,index)=>(
+                                            <Typography style={{whiteSpace: 'pre-wrap'}}
+                                                        fontSize={"12px"}
+                                                        color={"black"}
+                                                        style={{marginRight:"6px"}}>
+                                                {`${index+1}. ${file.name}`}
+                                            </Typography>
+                                        ))}
                                     </Item>
 
 
@@ -330,6 +451,7 @@ export default function UploadModal(props){
 
                         </Grid>
 
+                        <Button onClick={handleUploadFilesButton}>완료</Button>
                     </div>
 
                 </div>

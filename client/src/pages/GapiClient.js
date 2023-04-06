@@ -46,16 +46,17 @@ export function gisLoaded() {
 /**
  *  Sign in the user upon button click.
  */
-export function handleAuthClick() {
+export function handleAuthClick(callback) {
     tokenClient.callback = async (resp) => {
         if (resp.error !== undefined) {
             throw (resp);
         }
-        await listFiles();
-        console.log(resp)
+        localStorage.setItem("googleAccessToken",resp.access_token)
+        callback()
+
     };
 
-    if (window.gapi.client.getToken() === null) {
+    if (localStorage.getItem("googleAccessToken") === null) {
         // Prompt the user to select a Google Account and ask for consent to share their data
         // when establishing a new session.
         tokenClient.requestAccessToken({prompt: 'consent'});
@@ -68,7 +69,7 @@ export function handleAuthClick() {
 
 export async function getGoogleAuthToken() {
 
-    if (window.gapi.client.getToken() === null) {
+    if (localStorage.getItem("googleAccessToken") === null) {
         // Prompt the user to select a Google Account and ask for consent to share their data
         // when establishing a new session.
         await tokenClient.requestAccessToken({prompt: 'consent'});
@@ -77,7 +78,7 @@ export async function getGoogleAuthToken() {
         await tokenClient.requestAccessToken({prompt: ''});
     }
 
-    return window.gapi.client.getToken().access_token
+    return localStorage.getItem("googleAccessToken")
 
 }
 
@@ -85,7 +86,7 @@ export async function getGoogleAuthToken() {
  *  Sign out the user upon button click.
  */
 export function handleSignoutClick() {
-    const token = window.gapi.client.getToken();
+    const token = localStorage.getItem("googleAccessToken")
     if (token !== null) {
         window.google.accounts.oauth2.revoke(token.access_token);
         window.gapi.client.setToken('');

@@ -21,7 +21,7 @@ const myBucket = new AWS.S3({
 
 export const uploadFileToS3 = async (file) => {
     const uniqueId = uuidv4();
-
+    console.log(typeof file)
     const params = {
         ACL: 'public-read',
         Body: file,
