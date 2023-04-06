@@ -26,6 +26,8 @@ import {getGuideDocuments, postGuideDocuments, postWrittenDocument} from "../api
 import {useDispatch, useSelector} from "react-redux";
 import {callGetGuideDocuments, callGetWrittenDocuments} from "../modules/document";
 import MyDocumentTable from "./MyDocumentTable";
+import palette from "../theme/palette";
+import Guide from "./Guide";
 
 // ----------------------------------------------------------------------
 
@@ -64,30 +66,67 @@ export default function DashboardAppPage() {
                 {loading && <CenteredCircularProgress />}
                 <Grid container spacing={3}>
 
+                    {guideDocuments.length>0||writtenDocuments.length>0?
 
-                    <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px"}}>
-                        <Typography
-                            sx={{ flex: '1 1 100%' }}
-                            variant="h6"
-                            id="tableTitle"
-                            component="div"
-                        >
-                            가이드 문서
-                        </Typography>
-                        <MyDocumentTable documents={guideDocuments}/>
-                    </Paper>
+                        <>
+                            <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px"}}>
+                                <Typography
+                                    sx={{ flex: '1 1 100%' }}
+                                    variant="h6"
+                                    id="tableTitle"
+                                    component="div"
+                                >
+                                    가이드 문서
+                                </Typography>
+                                <MyDocumentTable documents={guideDocuments}/>
+                            </Paper>
 
-                    <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px"}}>
-                        <Typography
-                            sx={{ flex: '1 1 100%' }}
-                            variant="h6"
-                            id="tableTitle"
-                            component="div"
-                        >
-                            첨삭 문서
-                        </Typography>
-                        <MyDocumentTable documents={writtenDocuments}/>
-                    </Paper>
+                            <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px"}}>
+                                <Typography
+                                    sx={{ flex: '1 1 100%' }}
+                                    variant="h6"
+                                    id="tableTitle"
+                                    component="div"
+                                >
+                                    첨삭 문서
+                                </Typography>
+                                <MyDocumentTable documents={writtenDocuments}/>
+                            </Paper>
+                        </>
+
+
+                        :
+
+                        <>
+                            <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px",marginBottom:"88px"}}>
+                                <MyDocumentTable documents={[]}/>
+                            </Paper>
+                            <div style={{width:'100%', display:"flex", justifyContent:"center", marginBottom:"74px"}}>
+                                <Paper sx={{ width: '80%', mb: 2, background: "#EFF0F4", textAlign:"center"}} style={{marginTop:"10px",padding:"10px",borderRadius:"50px"}}>
+                                    <Typography
+                                        sx={{ flex: '1 1 100%' , }}
+                                        // style={{fontSize:"40px", color:palette.grey[500]}}
+                                        style={{fontSize:"40px", color:"white"}}
+                                        variant="h6"
+                                        id="tableTitle"
+                                        component="div"
+                                    >
+                                        첨삭 받을 문서 초안을 업로드해 주세요.
+                                    </Typography>
+                                </Paper>
+                            </div>
+                            <div style={{width:'100%', display:"flex", justifyContent:"center"}}>
+                                <Guide style={{width:"97%"}}/>
+                            </div>
+                        </>
+
+
+                    }
+
+
+
+
+
 
                 </Grid>
             </Container>
