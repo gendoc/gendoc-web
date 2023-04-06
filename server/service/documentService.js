@@ -57,11 +57,11 @@ const insertWrittenDocument =async (sessionId, file,projectId) => {
     }
 }
 
-const findGuideDocuments =async (sessionId) => {
+const findGuideDocuments =async (sessionId,projectId) => {
     try{
         await client.query("BEGIN")
         const accountId = await findAccountIdBySessionId(sessionId)
-        const qs = await client.query(`select * from guide_file where account_id = $1`,[accountId.toString()])
+        const qs = await client.query(`select * from guide_file where account_id = $1 and project_id = $2`,[accountId.toString(),projectId.toString()])
         const docs = []
         for (row of qs.rows){
             const doc = {}
@@ -83,11 +83,11 @@ const findGuideDocuments =async (sessionId) => {
     }
 }
 
-const findNoticeDocuments =async (sessionId) => {
+const findNoticeDocuments =async (sessionId,projectId) => {
     try{
         await client.query("BEGIN")
         const accountId = await findAccountIdBySessionId(sessionId)
-        const qs = await client.query(`select * from notice_file where account_id = $1`,[accountId.toString()])
+        const qs = await client.query(`select * from notice_file where account_id = $1 and project_id = $2`,[accountId.toString(),projectId.toString()])
         const docs = []
         for (row of qs.rows){
             const doc = {}
@@ -109,11 +109,11 @@ const findNoticeDocuments =async (sessionId) => {
     }
 }
 
-const findWrittenDocuments =async (sessionId) => {
+const findWrittenDocuments =async (sessionId,projectId) => {
     try{
         await client.query("BEGIN")
         const accountId = await findAccountIdBySessionId(sessionId)
-        const qs = await client.query(`select * from written_file where account_id = $1`,[accountId.toString()])
+        const qs = await client.query(`select * from written_file where account_id = $1 and project_id = $2`,[accountId.toString(),projectId.toString()])
         const docs = []
         for (row of qs.rows){
             const doc = {}

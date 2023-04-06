@@ -68,31 +68,7 @@ export default function DashboardAppPage() {
 
                     {projects.length>0?
 
-                        // <>
-                        //     <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px"}}>
-                        //         <Typography
-                        //             sx={{ flex: '1 1 100%' }}
-                        //             variant="h6"
-                        //             id="tableTitle"
-                        //             component="div"
-                        //         >
-                        //             가이드 문서
-                        //         </Typography>
-                        //         <MyDocumentTable documents={guideDocuments}/>
-                        //     </Paper>
-                        //
-                        //     <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px"}}>
-                        //         <Typography
-                        //             sx={{ flex: '1 1 100%' }}
-                        //             variant="h6"
-                        //             id="tableTitle"
-                        //             component="div"
-                        //         >
-                        //             첨삭 문서
-                        //         </Typography>
-                        //         <MyDocumentTable documents={writtenDocuments}/>
-                        //     </Paper>
-                        // </>
+
                         <>
                             <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px"}}>
                                 <Typography

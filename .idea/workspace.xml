@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 생성하기 버튼 디자인 적용">
-      <change afterPath="$PROJECT_DIR$/client/public/assets/icons/folder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/MyProjectTable.js" afterDir="false" />
+    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 프로젝트 화면 완성">
+      <change afterPath="$PROJECT_DIR$/client/src/pages/FolderPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/MyFolderTable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/projectApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/projectApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/api/documentApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/documentApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layouts/dashboard/header/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/UploadModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/UploadModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/modules/document.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/modules/document.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/DashboardAppPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/DashboardAppPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/MyProjectTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyProjectTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/documents.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/documents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/documentService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/documentService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +110,7 @@
       <option name="presentableId" value="Default" />
       <updated>1680499915657</updated>
       <workItem from="1680499916782" duration="39109000" />
-      <workItem from="1680671862374" duration="61688000" />
+      <workItem from="1680671862374" duration="65153000" />
     </task>
     <task id="LOCAL-00001" summary="chore: eslint 설정 제거">
       <created>1680529839505</created>
@@ -365,7 +371,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680783414077</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="feat: 프로젝트 화면 완성">
+      <created>1680784938940</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1680784938940</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,7 +396,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: express-postgresql 연동코드 추가" />
     <MESSAGE value="feat: 세션 설정 추가" />
     <MESSAGE value="feat: s3에 pdf 업로드 로직 수정" />
     <MESSAGE value="feat: axios 설정 추가" />
@@ -408,6 +420,7 @@
     <MESSAGE value="feat: 파일 업로드 시 project id 같이 보내게 수정" />
     <MESSAGE value="feat: 로딩중에 화면 disable 되게 수정" />
     <MESSAGE value="feat: 생성하기 버튼 디자인 적용" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 생성하기 버튼 디자인 적용" />
+    <MESSAGE value="feat: 프로젝트 화면 완성" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 프로젝트 화면 완성" />
   </component>
 </project>

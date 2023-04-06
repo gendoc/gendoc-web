@@ -1,8 +1,9 @@
-import {getGuideDocuments, getWrittenDocuments} from "../api/documentApi";
+import {getGuideDocuments, getNoticeDocuments, getWrittenDocuments} from "../api/documentApi";
 import {getProjects} from "../api/projectApi";
 
 const GET_GUIDE_DOCUMENTS_SUCCESS = "GET_GUIDE_DOCUMENTS_SUCCESS"
 const GET_WRITTEN_DOCUMENTS_SUCCESS = "GET_WRITTEN_DOCUMENTS_SUCCESS"
+const GET_NOTICE_DOCUMENTS_SUCCESS = "GET_NOTICE_DOCUMENTS_SUCCESS"
 const GET_PROJECTS_SUCCESS = "GET_PROJECTS_SUCCESS"
 const SET_LOADING = "SET_LOADING"
 const SET_MODAL_OPEN = "SET_MODAL_OPEN"
@@ -10,6 +11,11 @@ const SET_MODAL_OPEN = "SET_MODAL_OPEN"
 export const getGuideDocumentsSuccess = (documents) => ({
     type: GET_GUIDE_DOCUMENTS_SUCCESS,
     guideDocuments: documents
+});
+
+export const getNoticeDocumentsSuccess = (documents) => ({
+    type: GET_NOTICE_DOCUMENTS_SUCCESS,
+    noticeDocuments: documents
 });
 
 export const getWrittenDocumentsSuccess = (documents) => ({
@@ -43,10 +49,20 @@ export const callGetProjects =
         };
 
 
-export const callGetGuideDocuments =
-    () =>
+export const callGetNoticeDocuments =
+    (projectId) =>
         async (dispatch, getState) => {
-            await getGuideDocuments().then((res) => {
+            await getNoticeDocuments(projectId).then((res) => {
+                dispatch(getNoticeDocumentsSuccess(res.data.documents))
+            }).catch((error) => {
+                console.log(error.response.data)
+            })
+        };
+
+export const callGetGuideDocuments =
+    (projectId) =>
+        async (dispatch, getState) => {
+            await getGuideDocuments(projectId).then((res) => {
                 dispatch(getGuideDocumentsSuccess(res.data.documents))
             }).catch((error) => {
                 console.log(error.response.data)
@@ -54,9 +70,9 @@ export const callGetGuideDocuments =
         };
 
 export const callGetWrittenDocuments =
-    () =>
+    (projectId) =>
         async (dispatch, getState) => {
-            await getWrittenDocuments().then((res) => {
+            await getWrittenDocuments(projectId).then((res) => {
                 dispatch(getWrittenDocumentsSuccess(res.data.documents))
             }).catch((error) => {
                 console.log(error.response.data)
@@ -65,6 +81,7 @@ export const callGetWrittenDocuments =
 
 const initialState = {
     guideDocuments: [],
+    noticeDocuments: [],
     writtenDocuments: [],
     loading: false,
     modalOpen: false,
@@ -85,6 +102,11 @@ function documentReducer(
             return {
                 ...state,
                 writtenDocuments: action.writtenDocuments
+            }
+        case GET_NOTICE_DOCUMENTS_SUCCESS:
+            return {
+                ...state,
+                noticeDocuments: action.noticeDocuments
             }
         case GET_PROJECTS_SUCCESS:
             return {

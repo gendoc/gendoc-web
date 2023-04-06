@@ -25,7 +25,7 @@ const rows = [
     createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function MyProjectTable(props) {
+export default function MyFolderTable(props) {
 
 
     return (
@@ -33,10 +33,7 @@ export default function MyProjectTable(props) {
             <Table sx={{minWidth: 650}} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>프로젝트명</TableCell>
-                        <TableCell align="right">상태</TableCell>
-                        <TableCell align="right">용량</TableCell>
-                        <TableCell align="right">생성 시간</TableCell>
+                        <TableCell>폴더명</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -49,16 +46,13 @@ export default function MyProjectTable(props) {
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
                             >
                                 <TableCell component="th" scope="row">
-                                    <Link to={`/dashboard/projects/${project.projectId}`} style={{textDecoration: "none",color:"black",display:"flex",alignItems:"center"}}>
+                                    <Link to={`/dashboard/projects/${project.projectId}/${project.folderKey}`}
+                                          style={{textDecoration: "none",color:"black",display:"flex",alignItems:"center"}}>
                                         <img style={{marginRight:"10px"}} width={"30px"} src="/assets/icons/folder.png" />
                                         {project.projectName}
                                     </Link>
 
                                 </TableCell>
-                                <TableCell align="right">{project.projectState!=null?project.projectState:"첨삭중"}</TableCell>
-                                <TableCell align="right">-</TableCell>
-                                <TableCell
-                                    align="right">{moment(project.creationTime, 'YYYYMMDDHHmmss z').add(9, "h").fromNow()}</TableCell>
                             </TableRow>
                         )
                     })}

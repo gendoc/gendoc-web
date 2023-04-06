@@ -3,14 +3,20 @@ import {AppWidgetSummary} from "../../../sections/@dashboard/app";
 import React, {useEffect, useState} from "react";
 import {uploadFileToS3} from "../../../utils/s3Client";
 import {postGuideDocuments, postNoticeDocument, postWrittenDocument} from "../../../api/documentApi";
-import {callGetGuideDocuments, callGetWrittenDocuments, setLoading, setModalOpen} from "../../../modules/document";
+import {
+    callGetGuideDocuments,
+    callGetProjects,
+    callGetWrittenDocuments,
+    setLoading,
+    setModalOpen
+} from "../../../modules/document";
 import {gapiLoaded, gisLoaded, handleAuthClick} from "../../../pages/GapiClient";
 import {useDispatch, useSelector} from "react-redux";
 import newScript from "../../../utils/scriptReader";
 import CenteredCircularProgress from "../../../components/progress/CenteredCircularProgress";
 import Box from "@mui/material/Box";
 import {Item} from "../../../pages/Guide";
-import {postProject} from "../../../api/projectApi";
+import {getProjects, postProject} from "../../../api/projectApi";
 
 
 export default function UploadModal(props){
@@ -71,6 +77,7 @@ export default function UploadModal(props){
         }finally {
             dispatch(setModalOpen(false))
             dispatch(setLoading(false))
+            dispatch(callGetProjects())
 
         }
 
@@ -216,19 +223,6 @@ export default function UploadModal(props){
 
     }
 
-
-
-    function cloneObject(obj) {
-        var clone = {};
-        for (var key in obj) {
-            if (typeof obj[key] == "object" && obj[key] != null) {
-                clone[key] = cloneObject(obj[key]);
-            } else {
-                clone[key] = obj[key];
-            }
-        }
-        return clone;
-    }
 
     const handleGuideFilesUpload = async (event) => {
 

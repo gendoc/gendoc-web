@@ -21,15 +21,21 @@ export const postWrittenDocument = (postWrittenDocumentRequest) =>{
     )
 }
 
-export const getGuideDocuments = () =>{
+export const getGuideDocuments = (projectId) =>{
 
-    return axiosInstance.get(`/documents/guide`
+    return axiosInstance.get(`/documents/guide/${projectId}`
+    )
+}
+
+export const getNoticeDocuments = (projectId) =>{
+
+    return axiosInstance.get(`/documents/notice/${projectId}`
     )
 }
 
 
-export const getWrittenDocuments = () =>{
+export const getWrittenDocuments = (projectId) =>{
 
-    return axiosInstance.get(`/documents/written`
+    return axiosInstance.get(`/documents/written/${projectId}`
     )
 }

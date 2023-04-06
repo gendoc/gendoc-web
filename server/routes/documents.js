@@ -45,11 +45,12 @@ router.post('/written', async function(req, res, next) {
 
 });
 
-router.get('/guide', async function(req, res, next) {
+router.get('/guide/:projectId', async function(req, res, next) {
   try {
     const {sessionID} = req
+    const {projectId} = req.params;
     console.log(sessionID)
-    const docs = await findGuideDocuments(sessionID);
+    const docs = await findGuideDocuments(sessionID,projectId);
 
     res.send(JSON.stringify({documents:docs}));
   }catch (e){
@@ -58,11 +59,12 @@ router.get('/guide', async function(req, res, next) {
 
 });
 
-router.get('/notice', async function(req, res, next) {
+router.get('/notice/:projectId', async function(req, res, next) {
   try {
     const {sessionID} = req
+    const {projectId} = req.params;
     console.log(sessionID)
-    const docs = await findNoticeDocuments(sessionID);
+    const docs = await findNoticeDocuments(sessionID,projectId);
 
     res.send(JSON.stringify({documents:docs}));
   }catch (e){
@@ -71,11 +73,12 @@ router.get('/notice', async function(req, res, next) {
 
 });
 
-router.get('/written', async function(req, res, next) {
+router.get('/written/:projectId', async function(req, res, next) {
   try {
     const {sessionID} = req
+    const {projectId} = req.params;
     console.log(sessionID)
-    const docs = await findWrittenDocuments(sessionID);
+    const docs = await findWrittenDocuments(sessionID,projectId);
 
     res.send(JSON.stringify({documents:docs}));
   }catch (e){
