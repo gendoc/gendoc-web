@@ -2,6 +2,7 @@ import {getGuideDocuments, getWrittenDocuments} from "../api/documentApi";
 
 const GET_GUIDE_DOCUMENTS_SUCCESS = "GET_GUIDE_DOCUMENTS_SUCCESS"
 const GET_WRITTEN_DOCUMENTS_SUCCESS = "GET_WRITTEN_DOCUMENTS_SUCCESS"
+const SET_LOADING = "SET_LOADING"
 
 export const getGuideDocumentsSuccess = (documents) => ({
     type: GET_GUIDE_DOCUMENTS_SUCCESS,
@@ -11,6 +12,11 @@ export const getGuideDocumentsSuccess = (documents) => ({
 export const getWrittenDocumentsSuccess = (documents) => ({
     type: GET_WRITTEN_DOCUMENTS_SUCCESS,
     writtenDocuments: documents
+});
+
+export const setLoading = (isLoading) => ({
+    type: SET_LOADING,
+    isLoading: isLoading
 });
 
 export const callGetGuideDocuments =
@@ -36,6 +42,7 @@ export const callGetWrittenDocuments =
 const initialState = {
     guideDocuments: [],
     writtenDocuments: [],
+    loading: false
 }
 
 function documentReducer(
@@ -52,6 +59,11 @@ function documentReducer(
             return {
                 ...state,
                 writtenDocuments: action.writtenDocuments
+            }
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: action.isLoading
             }
         default:
             return state

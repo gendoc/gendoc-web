@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import { useLocation } from 'react-router-dom';
 // @mui
 import { styled, alpha } from '@mui/material/styles';
-import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
+import {Box, Link, Button, Drawer, Typography, Avatar, Stack, Modal, Container} from '@mui/material';
 // mock
 import account from '../../../_mock/account';
 // hooks
@@ -14,6 +14,7 @@ import Scrollbar from '../../../components/scrollbar';
 import NavSection from '../../../components/nav-section';
 //
 import navConfig from './config';
+import UploadModal from "./UploadModal";
 
 // ----------------------------------------------------------------------
 
@@ -24,7 +25,7 @@ const StyledAccount = styled('div')(({ theme }) => ({
   alignItems: 'center',
   padding: theme.spacing(2, 2.5),
   borderRadius: Number(theme.shape.borderRadius) * 1.5,
-  backgroundColor: alpha(theme.palette.grey[500], 0.12),
+  backgroundColor: alpha("#ECF2FE", 1),
 }));
 
 // ----------------------------------------------------------------------
@@ -38,7 +39,7 @@ export default function Nav({ openNav, onCloseNav }) {
   const { pathname } = useLocation();
 
   const isDesktop = useResponsive('up', 'lg');
-
+  const [modalOpen, setModalOpen] = useState(false);
   useEffect(() => {
     if (openNav) {
       onCloseNav();
@@ -57,18 +58,24 @@ export default function Nav({ openNav, onCloseNav }) {
         <Logo />
       </Box>
 
-      <Box sx={{ mb: 5, mx: 2.5 }}>
+      <UploadModal open={modalOpen}
+                   onClose={() => {
+        setModalOpen(false)
+      }}/>
+
+      <Box sx={{ mb: 5, mx: 2.5 , cursor:"pointer"}} onClick={()=>{setModalOpen(true)}}>
+
         <Link underline="none">
           <StyledAccount>
-            <Avatar src={account.photoURL} alt="photoURL" />
+            <Avatar style={{width:"50px",height:"auto"}} src={account.photoURL} alt="photoURL" />
 
-            <Box sx={{ ml: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
+            <Box sx={{ ml: 2 }} >
+              <Typography variant="subtitle2" sx={{ color: 'text.primary', fontSize:"20px" }} >
                 {account.displayName}
               </Typography>
 
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {account.role}
+              <Typography variant="body2" sx={{ color: 'text.secondary', fontSize:"14px" }}>
+                {"(Click here!)"}
               </Typography>
             </Box>
           </StyledAccount>
