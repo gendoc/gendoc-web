@@ -11,6 +11,7 @@ import {useEffect} from "react";
 import newScript from "../utils/scriptReader";
 import {gapiLoaded, gisLoaded} from "./GapiClient";
 import {callGetGuideDocuments, callGetWrittenDocuments} from "../modules/document";
+import {Link} from "react-router-dom";
 
 function createData(name, calories, fat, carbs, protein) {
     return {name, calories, fat, carbs, protein};
@@ -41,13 +42,24 @@ export default function MyDocumentTable(props) {
                     {props.documents.map((document) => {
 
 
+                        console.log(document)
                         return (
                             <TableRow
                                 key={document.fileName}
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
                             >
+
                                 <TableCell component="th" scope="row">
-                                    {document.fileName}
+                                    {document.documentId!=null?
+                                        <a href={`https://docs.google.com/document/d/${document.documentId}/edit`} target="_blank"
+                                           style={{color:"black"}}>
+                                            {document.fileName}
+                                        </a>
+                                    :
+                                        <>
+                                        {document.fileName}
+                                        </>
+                                    }
                                 </TableCell>
                                 <TableCell align="right">{document.documentState}</TableCell>
                                 <TableCell

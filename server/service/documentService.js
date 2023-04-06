@@ -118,7 +118,7 @@ const findWrittenDocuments =async (sessionId,projectId) => {
         for (row of qs.rows){
             const doc = {}
             doc.fileName = row.file_name
-            doc.fileKey = row.document_id
+            doc.documentId = row.document_id
             doc.accountId = row.account_id
             doc.uploadTime = row.upload_time
             doc.documentState = row.document_state
