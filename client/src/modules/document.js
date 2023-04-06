@@ -1,7 +1,9 @@
 import {getGuideDocuments, getWrittenDocuments} from "../api/documentApi";
+import {getProjects} from "../api/projectApi";
 
 const GET_GUIDE_DOCUMENTS_SUCCESS = "GET_GUIDE_DOCUMENTS_SUCCESS"
 const GET_WRITTEN_DOCUMENTS_SUCCESS = "GET_WRITTEN_DOCUMENTS_SUCCESS"
+const GET_PROJECTS_SUCCESS = "GET_PROJECTS_SUCCESS"
 const SET_LOADING = "SET_LOADING"
 const SET_MODAL_OPEN = "SET_MODAL_OPEN"
 
@@ -15,6 +17,11 @@ export const getWrittenDocumentsSuccess = (documents) => ({
     writtenDocuments: documents
 });
 
+export const getProjectsSuccess = (projects) => ({
+    type: GET_PROJECTS_SUCCESS,
+    projects: projects
+});
+
 export const setLoading = (isLoading) => ({
     type: SET_LOADING,
     isLoading: isLoading
@@ -24,6 +31,17 @@ export const setModalOpen = (isModalOpen) => ({
     type: SET_MODAL_OPEN,
     isModalOpen: isModalOpen
 });
+
+export const callGetProjects =
+    () =>
+        async (dispatch, getState) => {
+            await getProjects().then((res) => {
+                dispatch(getProjectsSuccess(res.data.projects))
+            }).catch((error) => {
+                console.log(error.response.data)
+            })
+        };
+
 
 export const callGetGuideDocuments =
     () =>
@@ -49,7 +67,8 @@ const initialState = {
     guideDocuments: [],
     writtenDocuments: [],
     loading: false,
-    modalOpen: false
+    modalOpen: false,
+    projects: []
 }
 
 function documentReducer(
@@ -66,6 +85,11 @@ function documentReducer(
             return {
                 ...state,
                 writtenDocuments: action.writtenDocuments
+            }
+        case GET_PROJECTS_SUCCESS:
+            return {
+                ...state,
+                projects: action.projects
             }
         case SET_LOADING:
             return {

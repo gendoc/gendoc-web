@@ -24,10 +24,11 @@ import {uploadFileToS3} from "../utils/s3Client";
 import CenteredCircularProgress from "../components/progress/CenteredCircularProgress";
 import {getGuideDocuments, postGuideDocuments, postWrittenDocument} from "../api/documentApi";
 import {useDispatch, useSelector} from "react-redux";
-import {callGetGuideDocuments, callGetWrittenDocuments, setModalOpen} from "../modules/document";
+import {callGetGuideDocuments, callGetProjects, callGetWrittenDocuments, setModalOpen} from "../modules/document";
 import MyDocumentTable from "./MyDocumentTable";
 import palette from "../theme/palette";
 import Guide from "./Guide";
+import MyProjectTable from "./MyProjectTable";
 
 // ----------------------------------------------------------------------
 
@@ -36,8 +37,8 @@ export default function DashboardAppPage() {
     const dispatch = useDispatch();
 
 
-    const guideDocuments = useSelector((state) => state.documentReducer.guideDocuments);
-    const writtenDocuments = useSelector((state) => state.documentReducer.writtenDocuments);
+
+    const projects = useSelector((state) => state.documentReducer.projects);
     const loading = useSelector((state) => state.documentReducer.loading);
 
     useEffect( () => {
@@ -47,8 +48,7 @@ export default function DashboardAppPage() {
         newScript("https://accounts.google.com/gsi/client").then(function() {
             gisLoaded()
         })
-        dispatch(callGetGuideDocuments())
-        dispatch(callGetWrittenDocuments())
+        dispatch(callGetProjects())
     }, [])
 
 
@@ -66,8 +66,33 @@ export default function DashboardAppPage() {
                 {loading && <CenteredCircularProgress />}
                 <Grid container spacing={3}>
 
-                    {guideDocuments.length>0||writtenDocuments.length>0?
+                    {projects.length>0?
 
+                        // <>
+                        //     <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px"}}>
+                        //         <Typography
+                        //             sx={{ flex: '1 1 100%' }}
+                        //             variant="h6"
+                        //             id="tableTitle"
+                        //             component="div"
+                        //         >
+                        //             가이드 문서
+                        //         </Typography>
+                        //         <MyDocumentTable documents={guideDocuments}/>
+                        //     </Paper>
+                        //
+                        //     <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px"}}>
+                        //         <Typography
+                        //             sx={{ flex: '1 1 100%' }}
+                        //             variant="h6"
+                        //             id="tableTitle"
+                        //             component="div"
+                        //         >
+                        //             첨삭 문서
+                        //         </Typography>
+                        //         <MyDocumentTable documents={writtenDocuments}/>
+                        //     </Paper>
+                        // </>
                         <>
                             <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px"}}>
                                 <Typography
@@ -76,21 +101,9 @@ export default function DashboardAppPage() {
                                     id="tableTitle"
                                     component="div"
                                 >
-                                    가이드 문서
+                                    프로젝트
                                 </Typography>
-                                <MyDocumentTable documents={guideDocuments}/>
-                            </Paper>
-
-                            <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px"}}>
-                                <Typography
-                                    sx={{ flex: '1 1 100%' }}
-                                    variant="h6"
-                                    id="tableTitle"
-                                    component="div"
-                                >
-                                    첨삭 문서
-                                </Typography>
-                                <MyDocumentTable documents={writtenDocuments}/>
+                                <MyProjectTable projects={projects}/>
                             </Paper>
                         </>
 

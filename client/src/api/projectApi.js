@@ -6,3 +6,9 @@ export const postProject = (postProjectRequest) =>{
         postProjectRequest
     )
 }
+
+export const getProjects = () =>{
+
+    return axiosInstance.get(`/projects`
+    )
+}
