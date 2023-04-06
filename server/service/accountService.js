@@ -27,6 +27,24 @@ const findAccountIdBySessionId =async (sessionId) => {
     }
 }
 
+const updateAccessToken =async (sessionId,accessToken) => {
+    try{
+        await client.query("BEGIN")
+        const accountId = await findAccountIdBySessionId(sessionId)
+        await client.query(`update account set google_access_token = $1 where account_id = $2`,[accessToken,accountId.toString()])
+        await client.query("COMMIT")
+
+        return
+    }catch(ex){
+        console.log("Failed to execute sendPostMessage"+ex)
+        await client.query("ROLLBACK")
+    }finally{
+        // await client.end()
+        console.log("Cleaned.")
+    }
+}
 
 
-module.exports = {findAccountIdBySessionId}
+
+module.exports = {findAccountIdBySessionId,updateAccessToken
+}

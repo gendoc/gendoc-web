@@ -1,8 +1,12 @@
 var express = require('express');
+const {updateAccessToken} = require("../service/accountService");
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.patch('/access-token', async function(req, res, next) {
+  const {accessToken} = req.body;
+  const {sessionID} = req
+  await updateAccessToken(sessionID,accessToken)
   res.send('respond with a resource');
 });
 

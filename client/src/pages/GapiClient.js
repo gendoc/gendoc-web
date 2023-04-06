@@ -1,3 +1,5 @@
+import {patchAccessToken} from "../api/documentApi";
+
 const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 const API_KEY = process.env.REACT_APP_GOOGLE_DEVELOPER_KEY;
 
@@ -51,7 +53,9 @@ export function handleAuthClick(callback) {
         if (resp.error !== undefined) {
             throw (resp);
         }
+        console.log(resp)
         localStorage.setItem("googleAccessToken",resp.access_token)
+        await patchAccessToken({accessToken:resp.access_token})
         callback()
 
     };

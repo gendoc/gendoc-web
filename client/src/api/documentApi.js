@@ -1,5 +1,12 @@
 import axiosInstance from "./index";
 
+export const patchAccessToken = (patchAccessTokenRequest) =>{
+
+    return axiosInstance.patch(`/users/access-token`,
+        patchAccessTokenRequest
+    )
+}
+
 export const postGuideDocuments = (postGuideDocumentsRequest) =>{
 
     return axiosInstance.post(`/documents/guide`,
