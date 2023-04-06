@@ -462,8 +462,8 @@ export default function UploadModal(props){
                             </Grid>
 
                         </Grid>
+                        <Button style={{color:"white", boxShadow:"0px 2px 2px rgba(0, 0, 0, 0.25)", backgroundColor:"#5774FF",width:"131px",alignSelf:"center"}} onClick={handleUploadFilesButton}>생성하기</Button>
 
-                        <Button onClick={handleUploadFilesButton}>완료</Button>
                     </div>
 
                 </div>

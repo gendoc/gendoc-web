@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 파일 업로드 시 project id 같이 보내게 수정">
+    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 로딩중에 화면 disable 되게 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/UploadModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/UploadModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/projects.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/projects.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/service/projectService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/projectService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1680499915657</updated>
       <workItem from="1680499916782" duration="39109000" />
-      <workItem from="1680671862374" duration="59741000" />
+      <workItem from="1680671862374" duration="60139000" />
     </task>
     <task id="LOCAL-00001" summary="chore: eslint 설정 제거">
       <created>1680529839505</created>
@@ -346,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680782147965</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="feat: 로딩중에 화면 disable 되게 수정">
+      <created>1680783032124</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1680783032124</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,7 +369,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="chore: 리포지토리 구조 변경 및 서버 코드 추가" />
     <MESSAGE value="feat: express 포트번호 변경" />
     <MESSAGE value="feat: express-postgresql 연동코드 추가" />
     <MESSAGE value="feat: 세션 설정 추가" />
@@ -389,6 +393,7 @@
     <MESSAGE value="feat: project id 가져오는 api 추가" />
     <MESSAGE value="feat: project id 가져올 때 project 제목 넣게 수정" />
     <MESSAGE value="feat: 파일 업로드 시 project id 같이 보내게 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 파일 업로드 시 project id 같이 보내게 수정" />
+    <MESSAGE value="feat: 로딩중에 화면 disable 되게 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 로딩중에 화면 disable 되게 수정" />
   </component>
 </project>
