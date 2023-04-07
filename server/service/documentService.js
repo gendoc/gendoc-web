@@ -1,12 +1,19 @@
 const client = require("../db/postgresqlClient");
 const {findAccountIdBySessionId} = require("./accountService");
+const {send} = require("../messagequeue/rabbitMQClient");
 
 const insertGuideDocuments =async (sessionId, files,projectId) => {
     try{
         await client.query("BEGIN")
         const accountId = await findAccountIdBySessionId(sessionId)
         for (file of files){
-            await client.query(`insert into guide_file (file_name,file_key,account_id,project_id) values ($1,$2,$3,$4)`,[file.fileName,file.fileKey,accountId.toString(),projectId.toString()])
+            const qs = await client.query(`insert into guide_file (file_name,file_key,account_id,project_id) values ($1,$2,$3,$4) returning *`,[file.fileName,file.fileKey,accountId.toString(),projectId.toString()])
+            console.log("qs : "+qs)
+            const doc = qs.rows[0]
+            doc.file_id = doc.guide_file_id;
+            delete doc.guide_file_id;
+            doc.document_type = "GUIDE"
+            await send("pdfQueue",JSON.stringify(doc),"inputPdf")
         }
         await client.query("COMMIT")
 
@@ -25,7 +32,12 @@ const insertNoticeDocument =async (sessionId, file,projectId) => {
     try{
         await client.query("BEGIN")
         const accountId = await findAccountIdBySessionId(sessionId)
-        await client.query(`insert into notice_file (file_name,file_key,account_id,project_id) values ($1,$2,$3,$4)`,[file.fileName,file.fileKey,accountId.toString(),projectId.toString()])
+        const qs = await client.query(`insert into notice_file (file_name,file_key,account_id,project_id) values ($1,$2,$3,$4) returning *`,[file.fileName,file.fileKey,accountId.toString(),projectId.toString()])
+        const doc = qs.rows[0]
+        doc.file_id = doc.notice_file_id;
+        delete doc.notice_file_id;
+        doc.document_type = "NOTICE"
+        await send("pdfQueue",JSON.stringify(doc),"inputPdf")
         await client.query("COMMIT")
 
         return true

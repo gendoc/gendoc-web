@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 구글 토큰 저장 로직 추가">
-      <change afterPath="$PROJECT_DIR$/server/messagequeue/rabbitMQClient.js" afterDir="false" />
+    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 메시지큐 설정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/documentService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/documentService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +100,7 @@
       <option name="presentableId" value="Default" />
       <updated>1680499915657</updated>
       <workItem from="1680499916782" duration="39109000" />
-      <workItem from="1680671862374" duration="73101000" />
+      <workItem from="1680671862374" duration="74498000" />
     </task>
     <task id="LOCAL-00001" summary="chore: eslint 설정 제거">
       <created>1680529839505</created>
@@ -392,7 +389,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680795353489</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="feat: 메시지큐 설정">
+      <created>1680837783976</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1680837783976</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -410,7 +414,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: axios 설정 추가" />
     <MESSAGE value="feat: 가이드 파일정보 서버에 올리는 로직 추가" />
     <MESSAGE value="fix: 서버 url env 표기오류 수정" />
     <MESSAGE value="feat: axios 쿠키설정" />
@@ -435,6 +438,7 @@
     <MESSAGE value="feat: 프로젝트 화면 완성" />
     <MESSAGE value="feat: 프로젝트 내부 화면 구현" />
     <MESSAGE value="feat: 구글 토큰 저장 로직 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 구글 토큰 저장 로직 추가" />
+    <MESSAGE value="feat: 메시지큐 설정" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 메시지큐 설정" />
   </component>
 </project>
