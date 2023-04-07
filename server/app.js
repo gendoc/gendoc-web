@@ -5,13 +5,19 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
 const cors = require('cors');
+
 require('dotenv').config({path: './.env'});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var documentsRouter = require('./routes/documents');
 var projectsRouter = require('./routes/projects');
+const {connect, send, receive} = require("./messagequeue/rabbitMQClient");
 
+connect().then(()=>{
+    // 구독하려는 하려는 큐 여기에 넣기
+    // receive("pdfQueue")
+})
 
 var app = express();
 
