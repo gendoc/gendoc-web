@@ -42,7 +42,6 @@ export default function Nav({ openNav, onCloseNav }) {
   const dispatch  = useDispatch()
   const isDesktop = useResponsive('up', 'lg');
   const modalOpen = useSelector((state) => state.documentReducer.modalOpen);
-  console.log("modalopen"+modalOpen)
   useEffect(() => {
     if (openNav) {
       onCloseNav();

@@ -214,7 +214,6 @@ export default function UploadModal(props){
 
             // Parse the response JSON and return the file ID
             const responseData = await response.json();
-            console.log(responseData);
             await postWrittenDocument({file:{fileName:file.name,documentId:responseData.id},projectId:projectId})
         }catch (e) {
             console.log(e)
