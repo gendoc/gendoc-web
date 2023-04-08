@@ -65,7 +65,7 @@ export default function Nav({ openNav, onCloseNav }) {
                    onClose={() => {
         dispatch(setModalOpen(false))
       }}
-                   BackdropProps={{ invisible: true }}
+                   BackdropProps={{ invisible: false }}
       />
 
       <Box sx={{ mb: 5, mx: 2.5 , cursor:"pointer"}} onClick={()=>{dispatch(setModalOpen(true))}}>

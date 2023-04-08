@@ -7,34 +7,24 @@ const icon = (name) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ 
 
 const navConfig = [
   {
-    title: 'dashboard',
+    title: '내 드라이브',
     path: '/dashboard/app',
-    icon: icon('ic_analytics'),
+    icon: icon('folder'),
   },
   {
-    title: 'user',
+    title: '전문가 작성 가이드',
     path: '/dashboard/user',
-    icon: icon('ic_user'),
+    icon: icon('download'),
   },
   {
-    title: 'product',
+    title: '휴지통',
     path: '/dashboard/products',
-    icon: icon('ic_cart'),
+    icon: icon('trash'),
   },
   {
-    title: 'blog',
+    title: '이용 크레딧',
     path: '/dashboard/blog',
-    icon: icon('ic_blog'),
-  },
-  {
-    title: 'login',
-    path: '/login',
-    icon: icon('ic_lock'),
-  },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: icon('ic_disabled'),
+    icon: icon('credit'),
   },
 ];
 

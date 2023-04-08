@@ -329,7 +329,7 @@ export default function UploadModal(props){
 
                         <Grid   container style={{display:"flex",justifyContent:"center"}}>
 
-                            <Grid item style={{ height: '100%', width: '100%'}}  >
+                            <Grid item style={{minHeight:"300px", height: '100%', width: '100%'}}  >
                                 <Box
                                     sx={{
                                         p: 2,
@@ -344,12 +344,23 @@ export default function UploadModal(props){
 
                                     <Item key={"공고 가이드 PDF 문서"} style={{
                                         display: "flex",
-                                        minHeight:"60px",minWidth:"272px",borderRadius:"17px",
+                                        minHeight:"60px",width:"272px",borderRadius:"17px",
                                         paddingBlock:"5px",paddingInline:"14px",textAlign:"center",justifyContent:"center",
-                                        justifySelf:"center", alignItems:"center", cursor:"pointer", flexDirection:"column"
+                                        justifySelf:"center", alignItems:"center", cursor:"pointer", flexDirection:"column",
                                     }}
                                           onClick={handleNoticeFileUploadButtonClick}
                                     >
+                                        {selectedFiles.noticeFile.length==0&&
+
+                                            <Typography style={{whiteSpace: 'pre-wrap'}}
+                                                        fontSize={"17px"}
+                                                        color={"black"}
+                                                        style={{marginRight:"6px"}}>
+                                                {"공고 가이드 PDF 문서"}
+                                            </Typography>
+                                        }
+
+
 
                                         <input
                                             type="file"
@@ -359,20 +370,16 @@ export default function UploadModal(props){
                                             onChange={handleNoticeFileUpload}
                                         />
 
-                                        <Typography style={{whiteSpace: 'pre-wrap'}}
-                                                    fontSize={"17px"}
-                                                    color={"black"}
-                                                    style={{marginRight:"6px"}}>
-                                            {"공고 가이드 PDF 문서"}
-                                        </Typography>
-
                                         {selectedFiles.noticeFile.map((file,index)=>(
-                                            <Typography style={{whiteSpace: 'pre-wrap'}}
-                                                        fontSize={"12px"}
-                                                        color={"black"}
-                                                        style={{marginRight:"6px"}}>
+                                            <span>
+                                                 <Typography style={{whiteSpace: 'pre-wrap',textAlign:"left"}}
+                                                             fontSize={"12px"}
+                                                             color={"black"}
+                                                             style={{marginRight:"6px"}}>
                                                 {`${index+1}. ${file.name}`}
                                             </Typography>
+                                            </span>
+
                                         ))}
 
 
@@ -382,12 +389,21 @@ export default function UploadModal(props){
 
                                     <Item key={ "작성 가이드 문서"} style={{
                                         display: "flex",
-                                        minHeight:"60px",minWidth:"272px",borderRadius:"17px",
+                                        minHeight:"60px",width:"272px",height:"100%",borderRadius:"17px",
                                         paddingBlock:"5px",paddingInline:"14px",textAlign:"center",justifyContent:"center",
                                         justifySelf:"center", alignItems:"center", cursor:"pointer", flexDirection:"column"
                                     }}
                                           onClick={handleGuideFilesUploadButtonClick}
                                     >
+
+                                        {selectedFiles.guideFile.length==0&&
+                                            <Typography style={{whiteSpace: 'pre-wrap',textAlign:"left"}}
+                                                        fontSize={"17px"}
+                                                        color={"black"}
+                                                        style={{marginRight:"6px"}}>
+                                                { "작성 가이드 문서"}
+                                            </Typography>
+                                        }
 
                                         <input
                                             type="file"
@@ -398,12 +414,7 @@ export default function UploadModal(props){
                                             onChange={handleGuideFilesUpload}
                                         />
 
-                                        <Typography style={{whiteSpace: 'pre-wrap'}}
-                                                    fontSize={"17px"}
-                                                    color={"black"}
-                                                    style={{marginRight:"6px"}}>
-                                            { "작성 가이드 문서"}
-                                        </Typography>
+
 
                                         {selectedFiles.guideFile.map((file,index)=>(
                                             <Typography style={{whiteSpace: 'pre-wrap'}}
@@ -418,12 +429,21 @@ export default function UploadModal(props){
 
                                     <Item key={"작성한 Word 문서"} style={{
                                         display: "flex",
-                                        minHeight:"60px",minWidth:"272px",borderRadius:"17px",
+                                        minHeight:"60px",width:"272px",borderRadius:"17px",
                                         paddingBlock:"5px",paddingInline:"14px",textAlign:"center",justifyContent:"center",
                                         justifySelf:"center", alignItems:"center", cursor:"pointer", flexDirection:"column"
                                     }}
                                           onClick={handleWrittenFileUploadButtonClick}
                                     >
+
+                                        {selectedFiles.writtenFile.length==0&&
+                                            <Typography style={{whiteSpace: 'pre-wrap',textAlign:"left"}}
+                                                        fontSize={"17px"}
+                                                        color={"black"}
+                                                        style={{marginRight:"6px"}}>
+                                                {"작성한 Word 문서"}
+                                            </Typography>
+                                        }
 
                                         <input
                                             type="file"
@@ -434,12 +454,7 @@ export default function UploadModal(props){
                                             onChange={handleWrittenFileUpload}
                                         />
 
-                                        <Typography style={{whiteSpace: 'pre-wrap'}}
-                                                    fontSize={"17px"}
-                                                    color={"black"}
-                                                    style={{marginRight:"6px"}}>
-                                            {"작성한 Word 문서"}
-                                        </Typography>
+
 
                                         {selectedFiles.writtenFile.map((file,index)=>(
                                             <Typography style={{whiteSpace: 'pre-wrap'}}
