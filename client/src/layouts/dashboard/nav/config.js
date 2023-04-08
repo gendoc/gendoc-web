@@ -13,17 +13,17 @@ const navConfig = [
   },
   {
     title: '전문가 작성 가이드',
-    path: '/dashboard/user',
+    path: '/',
     icon: icon('download'),
   },
   {
     title: '휴지통',
-    path: '/dashboard/products',
+    path: '/',
     icon: icon('trash'),
   },
   {
     title: '이용 크레딧',
-    path: '/dashboard/blog',
+    path: '/',
     icon: icon('credit'),
   },
 ];

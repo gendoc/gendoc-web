@@ -19,7 +19,23 @@ const findAccountIdBySessionId =async (sessionId) => {
 
         return queryResult.rows[0].account_id
     }catch(ex){
-        console.log("Failed to execute sendPostMessage"+ex)
+        console.error(ex.stack);
+        await client.query("ROLLBACK")
+    }finally{
+        // await client.end()
+        console.log("Cleaned.")
+    }
+}
+
+const findGoogleAccessTokenByAccountId =async (accountId) => {
+    try{
+        await client.query("BEGIN")
+        const queryResult = await client.query(`select * from account where account_id = $1`,[accountId]);
+        await client.query("COMMIT")
+
+        return queryResult.rows[0].google_access_token
+    }catch(ex){
+        console.error(ex.stack);
         await client.query("ROLLBACK")
     }finally{
         // await client.end()
@@ -36,7 +52,7 @@ const updateAccessToken =async (sessionId,accessToken) => {
 
         return
     }catch(ex){
-        console.log("Failed to execute sendPostMessage"+ex)
+        console.error(ex.stack);
         await client.query("ROLLBACK")
     }finally{
         // await client.end()
@@ -46,5 +62,5 @@ const updateAccessToken =async (sessionId,accessToken) => {
 
 
 
-module.exports = {findAccountIdBySessionId,updateAccessToken
+module.exports = {findAccountIdBySessionId,updateAccessToken,findGoogleAccessTokenByAccountId
 }

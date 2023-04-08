@@ -32,10 +32,21 @@ NavItem.propTypes = {
 function NavItem({ item }) {
   const { title, path, icon, info } = item;
 
+  const handleClick = () =>{
+      if (title=='전문가 작성 가이드') {
+          alert("문서 다운로드")
+      } else if (title=="내 드라이브"){
+
+      } else {
+          alert("Coming soon!")
+      }
+  }
+
   return (
     <StyledNavItem
       component={RouterLink}
       to={path}
+      onClick={handleClick}
       sx={{
         '&.active': {
           color: 'text.primary',

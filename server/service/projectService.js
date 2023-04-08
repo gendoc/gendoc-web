@@ -12,7 +12,7 @@ const insertProject =async (sessionId,projectName) => {
 
         return projectId
     }catch(ex){
-        console.log("Failed to execute sendPostMessage"+ex)
+        console.error(ex.stack);
         await client.query("ROLLBACK")
         return false
     }finally{
@@ -39,7 +39,7 @@ const findProjects =async (sessionId) => {
         await client.query("COMMIT")
         return projects
     }catch(ex){
-        console.log("Failed to execute sendPostMessage"+ex)
+        console.error(ex.stack);
         await client.query("ROLLBACK")
     }finally{
         // await client.end()

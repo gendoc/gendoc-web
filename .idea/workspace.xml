@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 메시지큐 설정">
+    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="jenkins test">
+      <change afterPath="$PROJECT_DIR$/client/public/assets/images/custom/character.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/googleApi/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/googleApi/test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/nav-section/NavSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/nav-section/NavSection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/server/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/messagequeue/rabbitMQClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/messagequeue/rabbitMQClient.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/documents.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/documents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/accountService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/accountService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/service/documentService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/documentService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/projectService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/projectService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +56,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "js.last.introduce.type": "CONST",
-    "last_opened_file_path": "/Users/sunghonpark/gendoc/gen-doc-web/client/src/pages",
+    "last_opened_file_path": "/Users/sunghonpark/gendoc/gen-doc-web/client/public/assets/images/custom",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -55,13 +69,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/public/assets/images/custom" />
+      <recent name="$PROJECT_DIR$/client/public/assets/icons/navbar" />
+      <recent name="$PROJECT_DIR$/server/googleApi" />
       <recent name="$PROJECT_DIR$/client/src/pages" />
       <recent name="$PROJECT_DIR$/client/src/api" />
-      <recent name="$PROJECT_DIR$/server/service" />
-      <recent name="$PROJECT_DIR$/server/routes" />
-      <recent name="$PROJECT_DIR$/client/public/assets/images/custom" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server" />
       <recent name="$PROJECT_DIR$/client/public/assets/icons" />
     </key>
   </component>
@@ -100,7 +115,7 @@
       <option name="presentableId" value="Default" />
       <updated>1680499915657</updated>
       <workItem from="1680499916782" duration="39109000" />
-      <workItem from="1680671862374" duration="74498000" />
+      <workItem from="1680671862374" duration="133905000" />
     </task>
     <task id="LOCAL-00001" summary="chore: eslint 설정 제거">
       <created>1680529839505</created>
@@ -396,7 +411,35 @@
       <option name="project" value="LOCAL" />
       <updated>1680837783976</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="feat: 가이드 pdf 메시지 큐에 넣는 로직 추가">
+      <created>1680839437831</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1680839437831</updated>
+    </task>
+    <task id="LOCAL-00044" summary="feat: 토큰 SCOPES 변경">
+      <created>1680918303616</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1680918303616</updated>
+    </task>
+    <task id="LOCAL-00045" summary="feat: 가이드 문구 추가">
+      <created>1680942763271</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1680942763271</updated>
+    </task>
+    <task id="LOCAL-00046" summary="jenkins test">
+      <created>1680963611325</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1680963611325</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -414,10 +457,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: 가이드 파일정보 서버에 올리는 로직 추가" />
-    <MESSAGE value="fix: 서버 url env 표기오류 수정" />
-    <MESSAGE value="feat: axios 쿠키설정" />
-    <MESSAGE value="feat: 가이드 문서 저장 api 추가" />
     <MESSAGE value="feat: 첨삭할 문서 저장 api 추가" />
     <MESSAGE value="feat: 구글 문서 id 업로드 로직 추가" />
     <MESSAGE value="feat: 업로드한 문서 조회 api 추가" />
@@ -439,6 +478,10 @@
     <MESSAGE value="feat: 프로젝트 내부 화면 구현" />
     <MESSAGE value="feat: 구글 토큰 저장 로직 추가" />
     <MESSAGE value="feat: 메시지큐 설정" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 메시지큐 설정" />
+    <MESSAGE value="feat: 가이드 pdf 메시지 큐에 넣는 로직 추가" />
+    <MESSAGE value="feat: 토큰 SCOPES 변경" />
+    <MESSAGE value="feat: 가이드 문구 추가" />
+    <MESSAGE value="jenkins test" />
+    <option name="LAST_COMMIT_MESSAGE" value="jenkins test" />
   </component>
 </project>

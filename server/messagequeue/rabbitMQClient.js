@@ -33,12 +33,13 @@ async function send(queue, message, routingKey) {
     }
 }
 
-async function receive(queue) {
+async function receive(queue, callback) {
     try {
 
         rabbitMQChannel.assertQueue(queue);
         rabbitMQChannel.consume(queue, (message) => {
             console.log(`Received message: ${message.content.toString()}`);
+            callback(JSON.parse(message.content))
             rabbitMQChannel.ack(message)
         });
     } catch (error) {

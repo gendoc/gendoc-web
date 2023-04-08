@@ -1,6 +1,6 @@
 var express = require('express');
 const {insertGuideDocuments, insertWrittenDocument, findGuideDocuments, findWrittenDocuments, insertNoticeDocument,
-  findNoticeDocuments
+  findNoticeDocuments, finishUpload
 } = require("../service/documentService");
 var router = express.Router();
 
@@ -81,6 +81,20 @@ router.get('/written/:projectId', async function(req, res, next) {
     const docs = await findWrittenDocuments(sessionID,projectId);
 
     res.send(JSON.stringify({documents:docs}));
+  }catch (e){
+    console.log(e)
+  }
+
+});
+
+router.get('/upload-finish', async function(req, res, next) {
+  try {
+    const {sessionID} = req
+    const {projectId} = req.params;
+    console.log(sessionID)
+    finishUpload(sessionID,projectId);
+
+    res.send("");
   }catch (e){
     console.log(e)
   }

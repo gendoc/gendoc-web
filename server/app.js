@@ -13,11 +13,15 @@ var usersRouter = require('./routes/users');
 var documentsRouter = require('./routes/documents');
 var projectsRouter = require('./routes/projects');
 const {connect, send, receive} = require("./messagequeue/rabbitMQClient");
+const {updatePDFFileState} = require("./service/documentService");
+const {getDocument} = require("./googleApi");
 
-connect().then(()=>{
-    // 구독하려는 하려는 큐 여기에 넣기
-    // receive("pdfQueue")
-})
+
+
+// connect().then(()=>{
+//     // 구독하려는 하려는 큐 여기에 넣기
+//     receive("pdfCompletionQueue",updatePDFFileState)
+// })
 
 var app = express();
 
@@ -31,7 +35,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use(cors({ credentials: true, origin: ['http://localhost:3000','http://gendoc.ai','https://gendoc.ai','http://www.gendoc.ai','https://www.gendoc.ai'] }));
 app.use(
     session({
         secret: process.env.SESSION_SECRET_KEY,
@@ -41,6 +45,8 @@ app.use(
         cookie: {maxAge: 60 * 60 * 1000}, // 1 hour
     })
 );
+
+
 
 
 app.use('/', indexRouter);
