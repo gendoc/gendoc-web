@@ -87,12 +87,12 @@ router.get('/written/:projectId', async function(req, res, next) {
 
 });
 
-router.get('/upload-finish', async function(req, res, next) {
+router.get('/upload-finish/:projectId', async function(req, res, next) {
   try {
     const {sessionID} = req
     const {projectId} = req.params;
     console.log(sessionID)
-    finishUpload(sessionID,projectId);
+    // finishUpload(sessionID,projectId);
 
     res.send("");
   }catch (e){

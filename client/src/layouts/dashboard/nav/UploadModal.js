@@ -2,7 +2,7 @@ import {Button, Container, Grid, Modal, Typography} from "@mui/material";
 import {AppWidgetSummary} from "../../../sections/@dashboard/app";
 import React, {useEffect, useState} from "react";
 import {uploadFileToS3} from "../../../utils/s3Client";
-import {postGuideDocuments, postNoticeDocument, postWrittenDocument} from "../../../api/documentApi";
+import {postGuideDocuments, postNoticeDocument, postWrittenDocument, uploadFinish} from "../../../api/documentApi";
 import {
     callGetGuideDocuments,
     callGetProjects,
@@ -66,9 +66,10 @@ export default function UploadModal(props){
 
     const uploadFiles = async () => {
         dispatch(setLoading(true))
+        let projectId
         try {
             const res = await postProject({projectName: selectedFiles.writtenFile[0].name})
-            const {projectId} = res.data
+            projectId = res.data.projectId
             await uploadGuideFiles(selectedFiles.guideFile,projectId)
             await uploadNoticeFile(selectedFiles.noticeFile[0],projectId)
             await uploadWrittenFile(selectedFiles.writtenFile[0],projectId)
@@ -78,7 +79,7 @@ export default function UploadModal(props){
             dispatch(setModalOpen(false))
             dispatch(setLoading(false))
             dispatch(callGetProjects())
-
+            uploadFinish(projectId)
         }
 
     }

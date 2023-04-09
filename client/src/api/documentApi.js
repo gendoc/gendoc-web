@@ -46,3 +46,9 @@ export const getWrittenDocuments = (projectId) =>{
     return axiosInstance.get(`/documents/written/${projectId}`
     )
 }
+
+export const uploadFinish = (projectId) =>{
+
+    return axiosInstance.get(`/documents/upload-finish/${projectId}`
+    )
+}
