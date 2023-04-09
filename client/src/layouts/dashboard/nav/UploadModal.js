@@ -89,15 +89,13 @@ export default function UploadModal(props){
             if(selectedFiles[prop].length==0){
                 switch(prop) {
                     case "noticeFile":
-                        alert("공고 가이드 문서를 업로드해 주세요")
-                        break;
-                    case "guideFile":
-                        alert("작성 가이드 문서를 업로드해 주세요")
+                        alert("모집 공고문 문서를 업로드해 주세요")
                         break;
                     case "writtenFile":
                         alert("작성한 Word 문서를 업로드해 주세요")
                         break;
                     default:
+                        continue
 
                 }
                 return false
@@ -107,6 +105,9 @@ export default function UploadModal(props){
     }
 
     const uploadGuideFiles = async (files,projectId) => {
+        if (files.length==0){
+            return
+        }
         const fileInfos = []
         let uploadSuccess = true
         for (let i = 0; i < files.length; i++) {
@@ -139,7 +140,7 @@ export default function UploadModal(props){
 
         } finally {
             if (!uploadSuccess) {
-                alert("작성 가이드 문서 업로드 실패")
+                alert("전문가 작성 가이드 업로드 실패")
             }
         }
     }
@@ -173,7 +174,7 @@ export default function UploadModal(props){
 
         } finally {
             if (!uploadSuccess) {
-                alert("공고 가이드 문서 업로드 실패")
+                alert("모집 공고문 문서 업로드 실패")
             }
         }
     }
@@ -306,11 +307,11 @@ export default function UploadModal(props){
                     <div style={{display:"flex",flexDirection:"column",flexWrap:"wrap"}}>
                         {loading && <CenteredCircularProgress />}
 
-                        <div style={{display:"flex"}}>
+                        <div style={{display:"flex",justifyContent:"center"}}>
                             <Typography
                                 id="tableTitle"
                                 component="div"
-                                fontSize={"20px"}
+                                fontSize={"25px"}
                                 style={{marginRight:"6px",fontWeight:"bold"}}
                             >
                                 새 프로젝트
@@ -319,7 +320,7 @@ export default function UploadModal(props){
                             <Typography
                                 id="tableTitle"
                                 component="div"
-                                fontSize={"20px"}
+                                fontSize={"25px"}
                             >
                                 (New DOC)
                             </Typography>
@@ -328,7 +329,7 @@ export default function UploadModal(props){
 
                         <Grid   container style={{display:"flex",justifyContent:"center"}}>
 
-                            <Grid item style={{minHeight:"300px", height: '100%', width: '100%'}}  >
+                            <Grid item style={{minHeight:"150px", height: '100%', width: '100%'}}  >
                                 <Box
                                     sx={{
                                         p: 2,
@@ -341,7 +342,7 @@ export default function UploadModal(props){
                                     style={{background:"#E9EEFE"}}
                                 >
 
-                                    <Item key={"공고 가이드 PDF 문서"} style={{
+                                    <Item key={"모집 공고문 문서"} style={{
                                         display: "flex",
                                         minHeight:"60px",width:"272px",borderRadius:"17px",
                                         paddingBlock:"5px",paddingInline:"14px",textAlign:"center",justifyContent:"center",
@@ -351,12 +352,26 @@ export default function UploadModal(props){
                                     >
                                         {selectedFiles.noticeFile.length==0&&
 
-                                            <Typography style={{whiteSpace: 'pre-wrap'}}
-                                                        fontSize={"17px"}
-                                                        color={"black"}
-                                                        style={{marginRight:"6px"}}>
-                                                {"공고 가이드 PDF 문서"}
-                                            </Typography>
+                                            <div style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",paddingInline:"30px"}}>
+
+                                                <div style={{flexDirection:"column"}}>
+                                                    <Typography style={{whiteSpace: 'pre-wrap'}}
+                                                                fontSize={"17px"}
+                                                                color={"black"}
+                                                                style={{marginRight:"6px"}}>
+                                                        {"모집 공고문 문서"}
+                                                    </Typography>
+                                                    <Typography style={{whiteSpace: 'pre-wrap',textAlign:"left"}}
+                                                                fontSize={"12px"}
+                                                                color={"#C55454"}
+                                                                style={{marginRight:"6px"}}>
+                                                        {"(PDF / 1개 제한 / 필수)"}
+                                                    </Typography>
+                                                </div>
+                                                <img style={{}} width={"30px"} src="/assets/images/custom/pdf.png" />
+
+                                            </div>
+
                                         }
 
 
@@ -386,7 +401,7 @@ export default function UploadModal(props){
 
 
 
-                                    <Item key={ "작성 가이드 문서"} style={{
+                                    <Item key={ "전문가 작성 가이드"} style={{
                                         display: "flex",
                                         minHeight:"60px",width:"272px",height:"100%",borderRadius:"17px",
                                         paddingBlock:"5px",paddingInline:"14px",textAlign:"center",justifyContent:"center",
@@ -396,12 +411,26 @@ export default function UploadModal(props){
                                     >
 
                                         {selectedFiles.guideFile.length==0&&
-                                            <Typography style={{whiteSpace: 'pre-wrap',textAlign:"left"}}
-                                                        fontSize={"17px"}
-                                                        color={"black"}
-                                                        style={{marginRight:"6px"}}>
-                                                { "작성 가이드 문서"}
-                                            </Typography>
+                                            <div style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",paddingInline:"30px"}}>
+
+                                                <div style={{flexDirection:"column"}}>
+                                                    <Typography style={{whiteSpace: 'pre-wrap',textAlign:"left"}}
+                                                                fontSize={"17px"}
+                                                                color={"black"}
+                                                                style={{marginRight:"6px"}}>
+                                                        { "전문가 작성 가이드"}
+                                                    </Typography>
+                                                    <Typography style={{whiteSpace: 'pre-wrap',textAlign:"left"}}
+                                                                fontSize={"12px"}
+                                                                color={"#C55454"}
+                                                                style={{marginRight:"6px"}}>
+                                                        {"(PDF / 제한 없음 / 선택)"}
+                                                    </Typography>
+                                                </div>
+                                                <img style={{}} width={"30px"} src="/assets/images/custom/pdf.png" />
+
+                                            </div>
+
                                         }
 
                                         <input
@@ -436,12 +465,24 @@ export default function UploadModal(props){
                                     >
 
                                         {selectedFiles.writtenFile.length==0&&
-                                            <Typography style={{whiteSpace: 'pre-wrap',textAlign:"left"}}
-                                                        fontSize={"17px"}
-                                                        color={"black"}
-                                                        style={{marginRight:"6px"}}>
-                                                {"작성한 Word 문서"}
-                                            </Typography>
+                                            <div style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",paddingInline:"30px"}}>
+                                                <div style={{flexDirection:"column"}}>
+                                                    <Typography style={{whiteSpace: 'pre-wrap',textAlign:"left"}}
+                                                                fontSize={"17px"}
+                                                                color={"black"}
+                                                                style={{marginRight:"6px"}}>
+                                                        {"작성한 Word 문서"}
+                                                    </Typography>
+                                                    <Typography style={{whiteSpace: 'pre-wrap',textAlign:"left"}}
+                                                                fontSize={"12px"}
+                                                                color={"#C55454"}
+                                                                style={{marginRight:"6px"}}>
+                                                        {"(1개만 업로드 가능 / 필수)"}
+                                                    </Typography>
+                                                </div>
+                                                <img style={{}} width={"30px"} src="/assets/images/custom/docx.png" />
+
+                                            </div>
                                         }
 
                                         <input

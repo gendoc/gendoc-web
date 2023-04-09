@@ -1,7 +1,7 @@
 const client = require("../db/postgresqlClient");
 const {findAccountIdBySessionId, findGoogleAccessTokenByAccountId} = require("./accountService");
 const {send} = require("../messagequeue/rabbitMQClient");
-const {getDocument, editTables, editSections} = require("../googleApi");
+const {getDocument, editTables, editSections, getTargetTables} = require("../googleApi");
 
 const insertGuideDocuments =async (sessionId, files,projectId) => {
     try{
@@ -153,7 +153,7 @@ const finishUpload =async (sessionId,projectId) => {
     try{
         await client.query("BEGIN")
         const accountId = await findAccountIdBySessionId(sessionId)
-
+        const googleAccessToken = await findGoogleAccessTokenByAccountId(accountId);
         const requestObj = {gonggo:"",ggultips:[],target_tables:[]}
         const fileKeys = await findPDFFileKeysByProjectId(projectId);
         for (fileKey of fileKeys){
@@ -163,11 +163,16 @@ const finishUpload =async (sessionId,projectId) => {
                 requestObj.gonggo =generateS3Url(fileKey.fileKey)
             }
         }
-
+        const writtenDocs = await findWrittenDocuments(sessionId,projectId);
+        const targetTables = getTargetTables(googleAccessToken,writtenDocs[0].documentId)
+        requestObj.target_tables= targetTables
 
         //서버에 pdf url 목록,테이블 내용 목록 보내주고 완료응답 받기
+            //todo
 
         //완료응답 받으면 pdf 처리완료로 바꿔
+        await client.query(`update guide_file set document_state = $1 where project_id = $2`,["처리 완료",projectId.toString()])
+        await client.query(`update notice_file set document_state = $1 where project_id = $2`,["처리 완료",projectId.toString()])
 
         //첨삭작업 시작
         startCorrectionDocument(projectId)

@@ -12,7 +12,8 @@ import newScript from "../utils/scriptReader";
 import {gapiLoaded, gisLoaded} from "./GapiClient";
 import {callGetGuideDocuments, callGetWrittenDocuments} from "../modules/document";
 import {Link} from "react-router-dom";
-
+import {makeStyles} from "@mui/material";
+import {styled} from "@mui/material/styles";
 function createData(name, calories, fat, carbs, protein) {
     return {name, calories, fat, carbs, protein};
 }
@@ -27,17 +28,23 @@ const rows = [
 
 export default function MyDocumentTable(props) {
 
+    const StyledTableHead = props.tableHeadColor?
+        styled(TableHead)`
+  & .MuiTableCell-root {
+    background-color: #EBF1FE;
+  }`: TableHead
+
 
     return (
         <TableContainer component={Paper}>
             <Table sx={{minWidth: 650}} aria-label="simple table">
-                <TableHead>
+                <StyledTableHead>
                     <TableRow>
                         <TableCell>파일명</TableCell>
                         <TableCell align="right">작업상태</TableCell>
                         <TableCell align="right">업로드 시간</TableCell>
                     </TableRow>
-                </TableHead>
+                </StyledTableHead>
                 <TableBody>
                     {props.documents.map((document) => {
 

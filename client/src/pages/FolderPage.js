@@ -28,7 +28,7 @@ import {
     callGetGuideDocuments,
     callGetNoticeDocuments,
     callGetProjects,
-    callGetWrittenDocuments,
+    callGetWrittenDocuments, setBackButtonShown,
     setModalOpen
 } from "../modules/document";
 import MyDocumentTable from "./MyDocumentTable";
@@ -73,43 +73,49 @@ export default function FolderPage(state) {
 
 
                     <>
-                        <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px"}}>
-                            <Typography
-                                sx={{ flex: '1 1 100%' }}
-                                variant="h6"
-                                id="tableTitle"
-                                component="div"
-                            >
-                                작성 가이드 문서
-                            </Typography>
-                            <MyDocumentTable documents={guideDocuments}/>
-                        </Paper>
-
 
 
                         <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px"}}>
                             <Typography
-                                sx={{ flex: '1 1 100%' }}
-                                variant="h6"
-                                id="tableTitle"
-                                component="div"
-                            >
-                                공고 가이드 문서
-                            </Typography>
-                            <MyDocumentTable documents={noticeDocuments}/>
-                        </Paper>
-
-                        <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"10px",padding:"10px"}}>
-                            <Typography
-                                sx={{ flex: '1 1 100%' }}
+                                sx={{ flex: '1 1 100%',marginBottom:"8px" }}
                                 variant="h6"
                                 id="tableTitle"
                                 component="div"
                             >
                                 첨삭 문서
                             </Typography>
-                            <MyDocumentTable documents={writtenDocuments}/>
+                            <MyDocumentTable tableHeadColor={true} documents={writtenDocuments}/>
+                            <hr color={"#BFBBBB"}  style={{width:"100%",height:"0.8px",border:"0px"}}/>
                         </Paper>
+
+
+                        <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"50px",padding:"10px"}}>
+                            <Typography
+                                sx={{ flex: '1 1 100%',marginBottom:"8px" }}
+                                variant="h6"
+                                id="tableTitle"
+                                component="div"
+                            >
+                                모집 공고문 문서
+                            </Typography>
+                            <MyDocumentTable documents={noticeDocuments}/>
+                        </Paper>
+
+                        <Paper sx={{ width: '100%', mb: 2 }} style={{marginTop:"5px",padding:"10px"}}>
+                            <Typography
+                                sx={{ flex: '1 1 100%',marginBottom:"8px" }}
+                                variant="h6"
+                                id="tableTitle"
+                                component="div"
+                            >
+                                전문가 작성 가이드
+                            </Typography>
+                            <MyDocumentTable documents={guideDocuments}/>
+                        </Paper>
+
+
+
+
                     </>
 
 

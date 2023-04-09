@@ -17,6 +17,55 @@ const getDocument = async (accessToken, documentId) => {
 
 }
 
+const getTargetTables = async (accessToken, documentId) => {
+
+    auth.setCredentials({access_token: accessToken});
+    const client = await google.docs({version: 'v1', auth});
+    const doc = await getDocument(accessToken, documentId);
+
+
+    let section = ""
+    let endIndex = 1
+    let documentPushCount = 0
+    const targetTables = []
+
+    for (let [index, element] of doc.body.content.entries()) {
+
+        if (element.table != null) {
+            let tableContent = ""
+            let tablePushCount = 0
+            for (tableRow of element.table.tableRows){
+                for (tableCell of tableRow.tableCells){
+                    if (tableCell.endIndex-tableCell.startIndex<30){
+                        for(content of tableCell.content){
+                            if (content.paragraph!=null){
+                                for (ele of content.paragraph.elements){
+                                    try {
+                                        tableContent+=ele.textRun.content.replace("\n","")
+                                    }catch (e){
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                    tableContent+="\n"
+                }
+            }
+
+            // console.log(tableRow.endIndex)
+            // console.log(tableContent)
+            // console.log("--------------------------------------------")
+            targetTables.push(tableContent)
+
+        }
+
+    }
+    return targetTables
+}
+// getTargetTables("ya29.a0Ael9sCNEkn8XanGMFns36LeftONileis_lqHnvkbZt9FbvZKRPuBWT2P2CyfBroXMwoYLwKR-u1yX1zS9YBGJYnVbh6WLxcmsoGzgxtaQYJGMoI6wnbiy1I2PZz5dTzSIPo92bpnBdSlwaNKBb-CBiVUctijaCgYKAUwSARASFQF4udJhcKTa-sg_5CxspdzVmJCLaQ0163",
+//     "1r_f9zXwkIfKJbi3u8cDqQv-lQeGpATJnus2QaFkV98M")
 const editTables = async (accessToken,documentId) => {
     auth.setCredentials({access_token: accessToken});
     const client = await google.docs({version: 'v1', auth});
@@ -166,6 +215,6 @@ const insertText = async (client,documentId,index,text) =>{
 // editSections()
 
 module.exports = {
-    getDocument,editSections,editTables
+    getDocument,editSections,editTables,getTargetTables,
 }
 

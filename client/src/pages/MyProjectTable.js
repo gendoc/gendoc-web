@@ -35,8 +35,7 @@ export default function MyProjectTable(props) {
                     <TableRow>
                         <TableCell>프로젝트명</TableCell>
                         <TableCell align="right">상태</TableCell>
-                        <TableCell align="right">용량</TableCell>
-                        <TableCell align="right">생성 시간</TableCell>
+                        <TableCell align="right">최종 수정 날짜</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -56,7 +55,6 @@ export default function MyProjectTable(props) {
 
                                 </TableCell>
                                 <TableCell align="right">{project.projectState!=null?project.projectState:"첨삭중"}</TableCell>
-                                <TableCell align="right">-</TableCell>
                                 <TableCell
                                     align="right">{moment(project.creationTime, 'YYYYMMDDHHmmss z').add(9, "h").fromNow()}</TableCell>
                             </TableRow>

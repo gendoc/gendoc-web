@@ -7,6 +7,7 @@ const GET_NOTICE_DOCUMENTS_SUCCESS = "GET_NOTICE_DOCUMENTS_SUCCESS"
 const GET_PROJECTS_SUCCESS = "GET_PROJECTS_SUCCESS"
 const SET_LOADING = "SET_LOADING"
 const SET_MODAL_OPEN = "SET_MODAL_OPEN"
+const SET_BACK_BUTTON_SHOWN = "SET_BACK_BUTTON_SHOWN"
 
 export const getGuideDocumentsSuccess = (documents) => ({
     type: GET_GUIDE_DOCUMENTS_SUCCESS,
@@ -36,6 +37,11 @@ export const setLoading = (isLoading) => ({
 export const setModalOpen = (isModalOpen) => ({
     type: SET_MODAL_OPEN,
     isModalOpen: isModalOpen
+});
+
+export const setBackButtonShown = (backButtonShown) => ({
+    type: SET_BACK_BUTTON_SHOWN,
+    backButtonShown: backButtonShown
 });
 
 export const callGetProjects =
@@ -85,7 +91,8 @@ const initialState = {
     writtenDocuments: [],
     loading: false,
     modalOpen: false,
-    projects: []
+    projects: [],
+    backButtonShown: false
 }
 
 function documentReducer(
@@ -122,6 +129,11 @@ function documentReducer(
             return {
                 ...state,
                 modalOpen: action.isModalOpen
+            }
+        case SET_BACK_BUTTON_SHOWN:
+            return {
+                ...state,
+                backButtonShown: action.backButtonShown
             }
         default:
             return state

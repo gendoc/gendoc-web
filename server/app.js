@@ -36,6 +36,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors({ credentials: true, origin: ['http://localhost:3000','http://gendoc.ai','https://gendoc.ai','http://www.gendoc.ai','https://www.gendoc.ai'] }));
+
 app.use(
     session({
         secret: process.env.SESSION_SECRET_KEY,

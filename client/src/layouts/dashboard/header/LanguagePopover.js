@@ -2,6 +2,10 @@ import { useState } from 'react';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, MenuItem, Stack, IconButton, Popover } from '@mui/material';
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {setBackButtonShown} from "../../../modules/document";
+import {useHistory, useLocation} from "react-router-dom";
 
 // ----------------------------------------------------------------------
 
@@ -26,11 +30,14 @@ const LANGS = [
 // ----------------------------------------------------------------------
 
 export default function LanguagePopover() {
+
+    const backButtonShown = useSelector((state) => state.documentReducer.backButtonShown);
   const [open, setOpen] = useState(null);
 
-  const handleOpen = (event) => {
-    setOpen(event.currentTarget);
-  };
+
+    const handleClick = () => {
+        window.history.back();
+    };
 
   const handleClose = () => {
     setOpen(null);
@@ -39,8 +46,9 @@ export default function LanguagePopover() {
   return (
     <>
       <IconButton
-        onClick={handleOpen}
+        onClick={handleClick}
         sx={{
+            display:(useLocation().pathname.startsWith("/dashboard/projects/")?"":"none"),
           padding: 0,
           width: 44,
           height: 44,
@@ -49,39 +57,9 @@ export default function LanguagePopover() {
           }),
         }}
       >
-        <img src={LANGS[0].icon} alt={LANGS[0].label} />
+        <img src={'/assets/icons/navbar/back.svg'} alt={LANGS[0].label} />
       </IconButton>
 
-      <Popover
-        open={Boolean(open)}
-        anchorEl={open}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        PaperProps={{
-          sx: {
-            p: 1,
-            mt: 1.5,
-            ml: 0.75,
-            width: 180,
-            '& .MuiMenuItem-root': {
-              px: 1,
-              typography: 'body2',
-              borderRadius: 0.75,
-            },
-          },
-        }}
-      >
-        <Stack spacing={0.75}>
-          {LANGS.map((option) => (
-            <MenuItem key={option.value} selected={option.value === LANGS[0].value} onClick={() => handleClose()}>
-              <Box component="img" alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />
-
-              {option.label}
-            </MenuItem>
-          ))}
-        </Stack>
-      </Popover>
     </>
   );
 }
