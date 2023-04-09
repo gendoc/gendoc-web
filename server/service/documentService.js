@@ -2,6 +2,7 @@ const client = require("../db/postgresqlClient");
 const {findAccountIdBySessionId, findGoogleAccessTokenByAccountId} = require("./accountService");
 const {send} = require("../messagequeue/rabbitMQClient");
 const {getDocument, editTables, editSections, getTargetTables} = require("../googleApi");
+const {postReadGuides} = require("./nlpService");
 
 const insertGuideDocuments =async (sessionId, files,projectId) => {
     try{
@@ -168,14 +169,13 @@ const finishUpload =async (sessionId,projectId) => {
         requestObj.target_tables= targetTables
 
         //서버에 pdf url 목록,테이블 내용 목록 보내주고 완료응답 받기
-            //todo
-
+        const nlpSessionId = await postReadGuides(requestObj)
         //완료응답 받으면 pdf 처리완료로 바꿔
         await client.query(`update guide_file set document_state = $1 where project_id = $2`,["처리 완료",projectId.toString()])
         await client.query(`update notice_file set document_state = $1 where project_id = $2`,["처리 완료",projectId.toString()])
 
         //첨삭작업 시작
-        startCorrectionDocument(projectId)
+        startCorrectionDocument(projectId,nlpSessionId)
 
         await client.query("COMMIT")
 
@@ -266,13 +266,14 @@ const updatePDFFileState =async (fileInfo) => {
     }
 }
 
-const startCorrectionDocument =async (projectId) => {
+const startCorrectionDocument =async (projectId,nlpSessionId) => {
     try{
         await client.query("BEGIN")
         await client.query(`update written_file set document_state = $1 where project_id = $2`,["첨삭중",projectId.toString()])
         const qs = await client.query(`select * from written_file where project_id = $1`,[projectId.toString()])
         const writtenFileInfo = qs.rows[0]
-        correctionDocument(writtenFileInfo)
+        correctionDocument(writtenFileInfo,nlpSessionId)
+
         await client.query("COMMIT")
 
         return
@@ -285,11 +286,11 @@ const startCorrectionDocument =async (projectId) => {
     }
 }
 
-const correctionDocument =async (writtenFileInfo) => {
+const correctionDocument =async (writtenFileInfo,nlpSessionId) => {
     try{
         const googleAccessToken = await findGoogleAccessTokenByAccountId(writtenFileInfo.account_id);
-        await editSections(googleAccessToken,writtenFileInfo.document_id)
-        await editTables(googleAccessToken,writtenFileInfo.document_id)
+        await editSections(googleAccessToken,writtenFileInfo.document_id,nlpSessionId)
+        await editTables(googleAccessToken,writtenFileInfo.document_id,nlpSessionId)
 
         return
     }catch(ex){

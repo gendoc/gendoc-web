@@ -4,6 +4,7 @@ const docs = require('@googleapis/docs')
 const {google} = require('googleapis');
 const auth = new google.auth.OAuth2();
 const fs = require('fs');
+const {proofRead} = require("../service/nlpService");
 
 
 const getDocument = async (accessToken, documentId) => {
@@ -34,23 +35,23 @@ const getTargetTables = async (accessToken, documentId) => {
         if (element.table != null) {
             let tableContent = ""
             let tablePushCount = 0
-            for (tableRow of element.table.tableRows){
-                for (tableCell of tableRow.tableCells){
-                    if (tableCell.endIndex-tableCell.startIndex<30){
-                        for(content of tableCell.content){
-                            if (content.paragraph!=null){
-                                for (ele of content.paragraph.elements){
-                                    try {
-                                        tableContent+=ele.textRun.content.replace("\n","")
-                                    }catch (e){
-                                    }
+            for (tableRow of element.table.tableRows) {
+                for (tableCell of tableRow.tableCells) {
+
+                    for (content of tableCell.content) {
+                        if (content.paragraph != null) {
+                            for (ele of content.paragraph.elements) {
+                                try {
+                                    // tableContent += ele.textRun.content.replace("\n", "")
+                                    tableContent += ele.textRun.content
+                                } catch (e) {
                                 }
                             }
                         }
                     }
 
 
-                    tableContent+="\n"
+                    // tableContent += "\n"
                 }
             }
 
@@ -66,7 +67,7 @@ const getTargetTables = async (accessToken, documentId) => {
 }
 // getTargetTables("ya29.a0Ael9sCNEkn8XanGMFns36LeftONileis_lqHnvkbZt9FbvZKRPuBWT2P2CyfBroXMwoYLwKR-u1yX1zS9YBGJYnVbh6WLxcmsoGzgxtaQYJGMoI6wnbiy1I2PZz5dTzSIPo92bpnBdSlwaNKBb-CBiVUctijaCgYKAUwSARASFQF4udJhcKTa-sg_5CxspdzVmJCLaQ0163",
 //     "1r_f9zXwkIfKJbi3u8cDqQv-lQeGpATJnus2QaFkV98M")
-const editTables = async (accessToken,documentId) => {
+const editTables = async (accessToken, documentId, nlpSessionId) => {
     auth.setCredentials({access_token: accessToken});
     const client = await google.docs({version: 'v1', auth});
     const doc = await getDocument(accessToken, documentId);
@@ -81,19 +82,22 @@ const editTables = async (accessToken,documentId) => {
         if (element.table != null) {
             let tableContent = ""
             let tablePushCount = 0
-            for (tableRow of element.table.tableRows){
-                for (tableCell of tableRow.tableCells){
-                    for(content of tableCell.content){
-                        if (content.paragraph!=null){
-                            for (ele of content.paragraph.elements){
+
+            for (tableRow of element.table.tableRows) {
+                for (tableCell of tableRow.tableCells) {
+                    for (content of tableCell.content) {
+                        if (content.paragraph != null) {
+                            for (ele of content.paragraph.elements) {
                                 try {
-                                    tableContent+=ele.textRun.content.replace("\n","")
-                                }catch (e){
+                                    // tableContent += ele.textRun.content.replace("\n", "")
+                                    tableContent += ele.textRun.content
+                                } catch (e) {
                                 }
                             }
                         }
                     }
-                    tableContent+="\n"
+
+                    // tableContent += "\n"
                 }
             }
 
@@ -101,19 +105,24 @@ const editTables = async (accessToken,documentId) => {
             // console.log(tableRow.endIndex)
             // console.log(tableContent)
             // console.log("--------------------------------------------")
-            const correctionSection = await getCorrectionSection()
-            await insertText(client,documentId,tableStartIndex+documentPushCount+2,correctionSection)
-            documentPushCount+=(correctionSection.length+3)
+            // [Fix(id='fa754002c341c3cb', original_value='이것저것사업', new_value='', reference='제조, 지식서비스, 융합 중 하나만 선택해야 합니다.', location=-1)]
+            const correctionSections = await getCorrectionSections("TABLE", tableContent, tableStartIndex, nlpSessionId)
+            for (let correctionSection of correctionSections) {
+                await insertText(client, documentId, correctionSection.location + documentPushCount + 2, correctionSection.new_value)
+                documentPushCount += (correctionSection.new_value.length + 3)
+            }
+
 
         }
+
 
     }
 }
 
- // editTables("ya29.a0Ael9sCOj4CDD78iky3OW8bAlcgLIfC6hvgYmRPETQPlGE8X3mZAv2tfuyzH_LwCSTdSpkg4coDZP-AUio-6U9FntrxVFmc8GIbmKJ8BeQ_pI0icpditNz6i_gVRH7mif-6mtgiP4rkQKzHYLOGFIKFE_xLrPAwaCgYKAcsSARASFQF4udJhxSJJvguiJVy0YS48P8NF7A0165",
- //     "1r_f9zXwkIfKJbi3u8cDqQv-lQeGpATJnus2QaFkV98M")
+// editTables("ya29.a0Ael9sCOj4CDD78iky3OW8bAlcgLIfC6hvgYmRPETQPlGE8X3mZAv2tfuyzH_LwCSTdSpkg4coDZP-AUio-6U9FntrxVFmc8GIbmKJ8BeQ_pI0icpditNz6i_gVRH7mif-6mtgiP4rkQKzHYLOGFIKFE_xLrPAwaCgYKAcsSARASFQF4udJhxSJJvguiJVy0YS48P8NF7A0165",
+//     "1r_f9zXwkIfKJbi3u8cDqQv-lQeGpATJnus2QaFkV98M")
 
-const editSections = async (accessToken,documentId) => {
+const editSections = async (accessToken, documentId, nlpSessionId) => {
     auth.setCredentials({access_token: accessToken});
     const client = await google.docs({version: 'v1', auth});
     const doc = await getDocument(accessToken, documentId);
@@ -130,15 +139,15 @@ const editSections = async (accessToken,documentId) => {
         if (element.paragraph != null && element.endIndex - element.startIndex > 1) {
             for (ele of element.paragraph.elements) {
                 try {
-                    fontSizeSum+=ele.textRun.textStyle.fontSize.magnitude
-                    textCount+=1
+                    fontSizeSum += ele.textRun.textStyle.fontSize.magnitude
+                    textCount += 1
                 } catch (e) {
                 }
             }
         }
 
     }
-    const averageFontSize=fontSizeSum/textCount
+    const averageFontSize = fontSizeSum / textCount
 
     for (let element of doc.body.content) {
 
@@ -147,7 +156,7 @@ const editSections = async (accessToken,documentId) => {
             let paragraphText = ""
             for (ele of element.paragraph.elements) {
                 try {
-                    if (ele.textRun.textStyle.bold == true && ele.textRun.textStyle.fontSize.magnitude>averageFontSize) {
+                    if (ele.textRun.textStyle.bold == true && ele.textRun.textStyle.fontSize.magnitude > averageFontSize) {
                         isBold = true
                     }
                 } catch (e) {
@@ -158,11 +167,11 @@ const editSections = async (accessToken,documentId) => {
                 }
             }
             if (isBold) {
-                if (section!=""){
+                if (section != "") {
                     sections.push({section: section, endIndex: endIndex})
-                    const correctionSection = await getCorrectionSection()
-                    await insertText(client,documentId,endIndex+pushCount-1,correctionSection)
-                    pushCount+=(correctionSection.length+3)
+                    const correctionSection = await getCorrectionSections()
+                    await insertText(client, documentId, endIndex + pushCount - 1, correctionSection)
+                    pushCount += (correctionSection.length + 3)
                     section = ""
                 }
 
@@ -172,11 +181,11 @@ const editSections = async (accessToken,documentId) => {
         }
 
     }
-    if (section!=""){
+    if (section != "") {
         sections.push({section: section, endIndex: endIndex})
-        const correctionSection = await getCorrectionSection()
-        await insertText(client,documentId,endIndex+pushCount-1,correctionSection)
-        pushCount+=(correctionSection.length+3)
+        const correctionSection = await getCorrectionSections()
+        await insertText(client, documentId, endIndex + pushCount - 1, correctionSection)
+        pushCount += (correctionSection.length + 3)
     }
 
     for (section of sections) {
@@ -184,19 +193,27 @@ const editSections = async (accessToken,documentId) => {
     }
 
 
-
 }
 
-async function getCorrectionSection(){
-    return "여기가 첨삭된 부분"
+
+// # {
+// #   "section_type": "PARAGRAPH", // ["PARAGRAPH","TABLE"] 둘 중 하나
+// #   "contents": "문단 혹은 테이블 내용",
+// #   "start_index": 123, // 문단 or 테이블 시작인덱스
+// #   "session_id": "session_id"
+// # }
+// [Fix(id='fa754002c341c3cb', original_value='이것저것사업', new_value='', reference='제조, 지식서비스, 융합 중 하나만 선택해야 합니다.', location=-1)]
+async function getCorrectionSections(sectionType, contents, startIndex, nlpSessionId) {
+    const request = {section_type: sectionType, contents: contents, start_index: startIndex, session_id: nlpSessionId}
+    return await proofRead(request)
 }
 
-const insertText = async (client,documentId,index,text) =>{
+const insertText = async (client, documentId, index, text) => {
     const requests = [
         {
             insertText: {
                 location: {
-                    segmentId:"",
+                    segmentId: "",
                     index: index, // 삽입될 위치의 시작 인덱스
                 },
                 text: `\n\n${text}\n`, // 텍스트와 줄바꿈 문자(\n)을 추가합니다.
@@ -215,6 +232,6 @@ const insertText = async (client,documentId,index,text) =>{
 // editSections()
 
 module.exports = {
-    getDocument,editSections,editTables,getTargetTables,
+    getDocument, editSections, editTables, getTargetTables,
 }
 
