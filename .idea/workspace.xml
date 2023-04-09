@@ -1,55 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 구글 api 권한 수정">
-      <change afterPath="$PROJECT_DIR$/client/public/assets/icons/navbar/back.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/assets/images/custom/docx.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/assets/images/custom/pdf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/android-icon-144x144.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/android-icon-192x192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/android-icon-36x36.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/android-icon-48x48.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/android-icon-72x72.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/android-icon-96x96.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/apple-icon-114x114.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/apple-icon-120x120.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/apple-icon-144x144.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/apple-icon-152x152.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/apple-icon-180x180.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/apple-icon-57x57.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/apple-icon-60x60.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/apple-icon-72x72.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/apple-icon-76x76.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/apple-icon-precomposed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/apple-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/browserconfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/favicon-96x96.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/ms-icon-144x144.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/ms-icon-150x150.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/ms-icon-310x310.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon/ms-icon-70x70.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/service/nlpService.js" afterDir="false" />
+    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: css 변경, 첨삭 파이프라인 변경">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon/favicon-16x16.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/favicon/favicon-16x16.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon/favicon-32x32.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/favicon/favicon-32x32.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/favicon/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/nav-section/NavSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/nav-section/NavSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/header/LanguagePopover.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layouts/dashboard/header/LanguagePopover.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layouts/dashboard/header/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/UploadModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/UploadModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/modules/document.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/modules/document.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/FolderPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/FolderPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Guide.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Guide.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyDocumentTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyDocumentTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MyProjectTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyProjectTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/googleApi/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/googleApi/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/service/documentService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/documentService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +66,7 @@
       <recent name="$PROJECT_DIR$/client/public/assets/icons" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.react start">
+  <component name="RunManager" selected="npm.express start">
     <configuration name="express start" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
@@ -147,7 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1680499915657</updated>
       <workItem from="1680499916782" duration="39109000" />
-      <workItem from="1680671862374" duration="157954000" />
+      <workItem from="1680671862374" duration="160388000" />
     </task>
     <task id="LOCAL-00001" summary="chore: eslint 설정 제거">
       <created>1680529839505</created>
@@ -485,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680983968730</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="feat: css 변경, 첨삭 파이프라인 변경">
+      <created>1681034581881</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1681034581881</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,7 +464,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: 업로드한 문서 조회 api 추가" />
     <MESSAGE value="feat: redux 적용" />
     <MESSAGE value="feat: 업로드 문서 확인 기능 추가" />
     <MESSAGE value="feat: 문서의 상태정보 추가" />
@@ -528,6 +488,7 @@
     <MESSAGE value="jenkins test" />
     <MESSAGE value="feat: 여러 기능 구현" />
     <MESSAGE value="feat: 구글 api 권한 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 구글 api 권한 수정" />
+    <MESSAGE value="feat: css 변경, 첨삭 파이프라인 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: css 변경, 첨삭 파이프라인 변경" />
   </component>
 </project>
