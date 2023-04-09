@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: css 변경, 첨삭 파이프라인 변경">
+    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 전문가 작성 가이드 파일 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/nav-section/NavSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/nav-section/NavSection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/MyProjectTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyProjectTable.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,14 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1680499915657</updated>
       <workItem from="1680499916782" duration="39109000" />
-      <workItem from="1680671862374" duration="160388000" />
-    </task>
-    <task id="LOCAL-00001" summary="chore: eslint 설정 제거">
-      <created>1680529839505</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1680529839505</updated>
+      <workItem from="1680671862374" duration="162540000" />
     </task>
     <task id="LOCAL-00002" summary="feat: GoogleDrivePicker 추가">
       <created>1680529878045</created>
@@ -446,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681034581881</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="feat: 전문가 작성 가이드 파일 수정">
+      <created>1681036629203</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1681036629204</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,7 +464,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: redux 적용" />
     <MESSAGE value="feat: 업로드 문서 확인 기능 추가" />
     <MESSAGE value="feat: 문서의 상태정보 추가" />
     <MESSAGE value="feat: 문서 업로드 모달형식으로 변경" />
@@ -489,6 +488,7 @@
     <MESSAGE value="feat: 여러 기능 구현" />
     <MESSAGE value="feat: 구글 api 권한 수정" />
     <MESSAGE value="feat: css 변경, 첨삭 파이프라인 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: css 변경, 첨삭 파이프라인 변경" />
+    <MESSAGE value="feat: 전문가 작성 가이드 파일 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 전문가 작성 가이드 파일 수정" />
   </component>
 </project>
