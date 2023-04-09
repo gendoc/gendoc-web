@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: uploadFinish 호출하게 수정">
+    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 첨삭 파이프라인 완성">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/nav-section/NavSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/nav-section/NavSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/googleApi/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/googleApi/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/service/documentService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/documentService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/DashboardAppPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/DashboardAppPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,21 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1680499915657</updated>
       <workItem from="1680499916782" duration="39109000" />
-      <workItem from="1680671862374" duration="168015000" />
-    </task>
-    <task id="LOCAL-00004" summary="feat: 로고 이미지 추가">
-      <created>1680529957586</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1680529957586</updated>
-    </task>
-    <task id="LOCAL-00005" summary="feat: yarn 제거">
-      <created>1680529968381</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1680529968381</updated>
+      <workItem from="1680671862374" duration="168378000" />
     </task>
     <task id="LOCAL-00006" summary="feat: 가이드 문서, 작성 문성 업로드 기능 추가">
       <created>1680529999028</created>
@@ -448,7 +432,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681039932887</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="feat: pdf파일만 주게 수정">
+      <created>1681054080792</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1681054080792</updated>
+    </task>
+    <task id="LOCAL-00054" summary="feat: 첨삭 파이프라인 완성">
+      <created>1681054136110</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1681054136110</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -478,8 +476,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: 문서 업로드 모달형식으로 변경" />
-    <MESSAGE value="feat: 사용법 컴포넌트 추가" />
     <MESSAGE value="feat: 모달 오픈상태 전역으로 변경" />
     <MESSAGE value="feat: 모집공고 업로드 api 추가" />
     <MESSAGE value="feat: 모집공고 조회 api 추가" />
@@ -503,6 +499,8 @@
     <MESSAGE value="feat: 전문가 작성 가이드 파일 수정" />
     <MESSAGE value="feat: 챗봇 아이콘 추가" />
     <MESSAGE value="feat: uploadFinish 호출하게 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: uploadFinish 호출하게 수정" />
+    <MESSAGE value="feat: pdf파일만 주게 수정" />
+    <MESSAGE value="feat: 첨삭 파이프라인 완성" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 첨삭 파이프라인 완성" />
   </component>
 </project>
