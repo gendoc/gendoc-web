@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 첨삭 파이프라인 완성">
+    <list default="true" id="4286d48f-fb96-499d-926e-cf071f6e3f2a" name="Changes" comment="feat: 헬멧 제거">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/DashboardAppPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/DashboardAppPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/api/documentApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/documentApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/UploadModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layouts/dashboard/nav/UploadModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/GapiClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/GapiClient.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/MyProjectTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MyProjectTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utils/s3Client.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/s3Client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/documents.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/documents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/accountService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/accountService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/documentService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/documentService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/nlpService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/nlpService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,23 +45,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "js.last.introduce.type": "CONST",
-    "last_opened_file_path": "/Users/sunghonpark/gendoc/gen-doc-web/client/public/favicon",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "editor.preferences.completion",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;js.last.introduce.type&quot;: &quot;CONST&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/sunghonpark/gendoc/gen-doc-web/client/public/favicon&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client/public/favicon" />
@@ -66,7 +75,7 @@
       <recent name="$PROJECT_DIR$/client/public/assets/icons" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.express start">
+  <component name="RunManager" selected="npm.react start">
     <configuration name="express start" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
@@ -101,14 +110,8 @@
       <option name="presentableId" value="Default" />
       <updated>1680499915657</updated>
       <workItem from="1680499916782" duration="39109000" />
-      <workItem from="1680671862374" duration="168378000" />
-    </task>
-    <task id="LOCAL-00006" summary="feat: 가이드 문서, 작성 문성 업로드 기능 추가">
-      <created>1680529999028</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1680529999028</updated>
+      <workItem from="1680671862374" duration="183693000" />
+      <workItem from="1681189457058" duration="3095000" />
     </task>
     <task id="LOCAL-00007" summary="chore: 리포지토리 구조 변경 및 서버 코드 추가">
       <created>1680672577985</created>
@@ -446,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681054136110</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="feat: 헬멧 제거">
+      <created>1681054495501</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1681054495501</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,7 +486,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: 모달 오픈상태 전역으로 변경" />
     <MESSAGE value="feat: 모집공고 업로드 api 추가" />
     <MESSAGE value="feat: 모집공고 조회 api 추가" />
     <MESSAGE value="feat: 업로드 프로세스 변경" />
@@ -501,6 +510,7 @@
     <MESSAGE value="feat: uploadFinish 호출하게 수정" />
     <MESSAGE value="feat: pdf파일만 주게 수정" />
     <MESSAGE value="feat: 첨삭 파이프라인 완성" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 첨삭 파이프라인 완성" />
+    <MESSAGE value="feat: 헬멧 제거" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 헬멧 제거" />
   </component>
 </project>

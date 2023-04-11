@@ -32,6 +32,7 @@ const findGoogleAccessTokenByAccountId =async (accountId) => {
         await client.query("BEGIN")
         const queryResult = await client.query(`select * from account where account_id = $1`,[accountId]);
         await client.query("COMMIT")
+        console.log(queryResult)
 
         return queryResult.rows[0].google_access_token
     }catch(ex){

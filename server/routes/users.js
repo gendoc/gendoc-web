@@ -6,6 +6,7 @@ var router = express.Router();
 router.patch('/access-token', async function(req, res, next) {
   const {accessToken} = req.body;
   const {sessionID} = req
+  console.log("patch token: "+accessToken)
   await updateAccessToken(sessionID,accessToken)
   res.send('respond with a resource');
 });
