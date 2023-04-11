@@ -1,7 +1,7 @@
 import axiosInstance from "./index";
 
 export const patchAccessToken = (patchAccessTokenRequest) =>{
-
+    console.log("patchAccessToken")
     return axiosInstance.patch(`/users/access-token`,
         patchAccessTokenRequest
     )
@@ -48,7 +48,7 @@ export const getWrittenDocuments = (projectId) =>{
 }
 
 export const uploadFinish = (projectId) =>{
-
+    console.log("uploadFinish")
     return axiosInstance.get(`/documents/upload-finish/${projectId}`
     )
 }

@@ -2,7 +2,13 @@ import {Button, Container, Grid, Modal, Typography} from "@mui/material";
 import {AppWidgetSummary} from "../../../sections/@dashboard/app";
 import React, {useEffect, useState} from "react";
 import {uploadFileToS3} from "../../../utils/s3Client";
-import {postGuideDocuments, postNoticeDocument, postWrittenDocument, uploadFinish} from "../../../api/documentApi";
+import {
+    patchAccessToken,
+    postGuideDocuments,
+    postNoticeDocument,
+    postWrittenDocument,
+    uploadFinish
+} from "../../../api/documentApi";
 import {
     callGetGuideDocuments,
     callGetProjects,
@@ -53,7 +59,7 @@ export default function UploadModal(props){
 
                 const response = await fetch(url);
                 if (response.ok) {
-                    uploadFiles()
+                    uploadFiles(accessToken)
                 }else{
                     handleAuthClick(uploadFiles)
                 }
@@ -64,12 +70,17 @@ export default function UploadModal(props){
     }
 
 
-    const uploadFiles = async () => {
+    const uploadFiles = async (access_token) => {
         dispatch(setLoading(true))
         let projectId
         try {
+            console.log("uploadFiles token :"+access_token)
+            if (access_token!=null){
+                await patchAccessToken({accessToken:access_token})
+            }
             const res = await postProject({projectName: selectedFiles.writtenFile[0].name})
             projectId = res.data.projectId
+            console.log("projectId: "+projectId)
             await uploadGuideFiles(selectedFiles.guideFile,projectId)
             await uploadNoticeFile(selectedFiles.noticeFile[0],projectId)
             await uploadWrittenFile(selectedFiles.writtenFile[0],projectId)
@@ -79,6 +90,7 @@ export default function UploadModal(props){
             dispatch(setModalOpen(false))
             dispatch(setLoading(false))
             dispatch(callGetProjects())
+            console.log("uploadFinish projectId: "+projectId)
             uploadFinish(projectId)
         }
 

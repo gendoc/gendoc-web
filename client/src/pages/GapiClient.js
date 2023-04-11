@@ -54,8 +54,8 @@ export function handleAuthClick(callback) {
         }
         console.log(resp)
         localStorage.setItem("googleAccessToken",resp.access_token)
-        await patchAccessToken({accessToken:resp.access_token})
-        callback()
+
+        callback(resp.access_token)
 
     };
 
